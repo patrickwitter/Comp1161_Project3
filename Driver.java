@@ -15,7 +15,7 @@ public class Driver {
 
 	/**
 	 *
-	 * @author Patrick Witter,
+	 * @author Patrick Witter,Kieran Jaggernauth, Peter-John Thompson
 	 */
 	public static void main(String[] args) {
 		/**

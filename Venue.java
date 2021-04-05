@@ -21,6 +21,10 @@ public class Venue implements Comparable<Venue> {
 	{}
 	/**
 	 *Venue constructor
+	 * @param name Name of Venue(String)
+	 * @param basePrice  BasePrice of Venue
+	 * @param size Capacity of Venue
+	 * @param lev The activity level of Venue
 	 **/
 	public Venue( String name, double size, double basePrice, int lev)
 	{
@@ -73,9 +77,10 @@ public class Venue implements Comparable<Venue> {
 	public void updateLocalData(Scanner newValueInput)
 	{
 		/**
-		 *  Function accepts input scanner from the keyboard.
+		 *  Method accepts input scanner from the keyboard.
 		 *  Function accepts new value for venue properties from the users
 		 *  and then updates old properties with new ones
+		 * @param newValueInput Accepts Input Stream from keyboard which is new value
 		 */
 
 		// newValueInput gets the new value for the properties of the venue previously entered
@@ -166,6 +171,11 @@ public class Venue implements Comparable<Venue> {
 	
 	public double getEstimate(String type)
 	{
+		/**
+		 * Method returns estimated cost of venue based on Venue type
+		 * @param type this is the type of venue being accessed
+		 * @return Price of estimate
+		 */
 		double price = basePrice;
 		if (type.equals("PARTY"))
 			price += partyPrep;
@@ -188,7 +198,13 @@ public int getId()
 
 	public int reserve( Event event,double availBal, Ministry min)
 	
-	{   
+	{
+		/**
+		 * Method approves an event for the menue based on
+		 * @param event Event that is seeking to be approved
+		 * @param availBal Available Balance of promoter
+		 * @param min Ministry to approve the request
+		 */
 		System.out.println("Submitted "+event +" for approval at " + this);
 		ApprovalRequest ar = new ApprovalRequest(event, this);
 	int approval = min.checkApproval(ar);
@@ -208,6 +224,10 @@ public int getId()
 	
 	public boolean available(Date date)
 	{
+		/**
+		 * Method checks if venue is reserved at a certain date
+		 * @param date Date to be checked
+		 */
 		boolean returnVal=true;
 			
 		ArrayList<Integer> reservedDays = new ArrayList<Integer>();
@@ -228,6 +248,10 @@ public int getId()
 	
 	public  boolean canHold(int nump)
 	{
+		/**
+		 * Method Checks if Venue can hold number of people
+		 * @param  nump Number of persons to be present at venue 
+		 */
 		boolean returnVal = false;
 		
 	    int separation=0;
