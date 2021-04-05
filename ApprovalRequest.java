@@ -1,5 +1,6 @@
-
-
+/**
+ * Approval Request
+ */
 class ApprovalRequest
 { 
 private Event event;
@@ -11,6 +12,11 @@ private String comment;
 
 public ApprovalRequest(Event event, Venue venue)
 {
+	/**
+	 * Constructor for Approval Request. Also generates a unique id.
+	 * @param Event seeking approval
+	 * @param Venue that the Event is taking place
+	 */
 	this.event = event;
 	this.venue = venue;
 	id = nextid;

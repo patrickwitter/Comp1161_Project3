@@ -1,3 +1,6 @@
+/**
+ * Entry Screen
+ */
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,6 +13,17 @@ public class EntryScreen {
 
 	public ArrayList<Promoter> managePromoters(Scanner scan,ArrayList<Promoter> proms, Ministry min, ArrayList<Venue> vens) throws NumberFormatException
 	{
+		/**
+		 * Method provides Promoter menu to the user.
+		 * from different menu options the user will be able
+		 * to add,update,list or edit the
+		 * current list of promoters
+		 * @param Input stream from the keyboard
+		 * @param Arraylist of type Promoter
+		 * @param Ministry class
+		 * @param Arraylist of type Venue
+		 * @return Arraylist of type Promoter
+		 */
 		ReportScreen r = new ReportScreen();
 		char mchoice = 'c';
 		String menu="";
@@ -66,6 +80,16 @@ public class EntryScreen {
 
 	public Promoter createPromoter( Scanner scan, Ministry min, ArrayList<Venue> vens)
 	{
+		/**
+		 * Method provides functionality to the Add Promoter menu.
+		 * This will allow a promoter to created after the
+		 * information is entered by the user
+		 * to create a promoter to be added to Arraylist on return
+		 * @param Input stream from the keyboard
+		 * @param Ministry class
+		 * @param Arraylist of type Venue
+		 * @return Promoter
+		 */
 		Promoter p = null;
 		try
 		{
@@ -83,6 +107,17 @@ public class EntryScreen {
 
 	public int findPromoter(ArrayList<Promoter> proms, int pid)
 	{
+		/**
+		 * Method provides functionality to the Edit Promoter Menu.
+		 * The user is asked to enter an id of the Promter they want
+		 * to edit.
+		 * Method searches for Promoter with matching id fom the user
+		 * and returns the id or an indication that no Promoter is found
+		 * @param Arraylist of Promoters
+		 * @param ID of promoter to be found enteredby the user
+		 * @return ID of promoter or indication number that id was not found
+		 */
+
 		int pdx =-1;
 		int currdx=0;
 		while ((currdx<proms.size())&&(pdx==-1))
@@ -99,6 +134,15 @@ public class EntryScreen {
 
 	public ArrayList<Venue> manageVenues(Scanner scan, ArrayList<Venue> vens)
 	{
+		/**
+		 * Method provides Venue menu to the user.
+		 * From different menu options the user will be able
+		 * to add,update,list or edit the
+		 * current list of venues
+		 * @param Input stream from the keyboard
+		 * @param Arraylist of type Venue
+		 * @return Arraylist of type Venue
+		 */
 		ReportScreen r = new ReportScreen();
 		char mchoice = 'c';
 		String menu="";
@@ -157,7 +201,15 @@ public class EntryScreen {
 
 	public Venue createVenue( Scanner scan)
 	{
-
+		/**
+		 * Method provides functionality to the Add Venue menu and
+		 * asks provides a Menu that asks the user which venue to create.
+		 * This will allow a venue to created after the user selects which type of menu and
+		 * the necessary information is entered by the user
+		 * to create a promoter to be added to Arraylist on return
+		 * @param Input stream from the keyboard
+		 * @return Venue
+		 */
 		Venue v = null;
 		char mchoice = 'c';
 		String menu="";
@@ -284,6 +336,16 @@ public class EntryScreen {
 
 	public int findVenue(ArrayList<Venue> vens, int vid)
 	{
+		/**
+		 * Method provides functionality to the Edit Venue Menu.
+		 * The user is asked to enter an id of the Venue they want
+		 * to edit.
+		 * Method searches for Venue with matching id fom the user
+		 * and returns the id or an indication that no Venue is found
+		 * @param Arraylist of Venue
+		 * @param ID of venue to be found entered by the user
+		 * @return ID of venue or indication number that id was not found
+		 */
 		int vdx=-1;
 		////code needed here to find venue with id VID in arraylist of venues
 		for(Venue venue: vens)

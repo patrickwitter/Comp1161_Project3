@@ -7,16 +7,21 @@ import java.io.IOException;
 import java.io.PrintStream;
 //import project.Tester;
 public class Driver {
+
+	/**
+	 * Driver
+	 */
     WorkArea workArea = new WorkArea();
 
 	/**
 	 *
-	 * @author Patrick Witter
+	 * @author Patrick Witter,
 	 */
 	public static void main(String[] args) {
 		/**
-		 * The main function displays the main menu for the program. This menu displays
-		 * the primary functions of the program.
+		 * The main function displays the main menu for the program.
+		 * This menu displays the primary functions of the program.
+		 * The program accepts user input
 		 */
 		//Tester.main(args);;
 		// TODO Auto-generated method stub
