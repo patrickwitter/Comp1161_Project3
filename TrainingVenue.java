@@ -1,13 +1,22 @@
 
 
 import java.util.Scanner;
-
+/**
+ * Training Venue
+ **/
 public class TrainingVenue extends Venue {
 	private double instructorArea;
 	private double otherArea;
    	
 
-
+	/**
+	 *Sports Venue Constructor
+	 *@param name  name associated with the venue
+	 *@param instructorArea area for instructors
+	 *@param otherArea other areas
+	 *@param basePrice price associated with the venue
+	 *@param lev local alert level 
+	 **/
 public TrainingVenue(String name, double instructorArea, double otherArea,
 		double basePrice,int lev)
 {
@@ -16,6 +25,11 @@ this.instructorArea = 	instructorArea;
 this.otherArea = otherArea;
 
 }
+   /**
+	* Method to get the estimated price based on the type of event
+	* @param type type of event
+	* @return estimated price as double 
+    */
 public double getEstimate(String type)
 {
 		double price = basePrice;
@@ -30,12 +44,18 @@ public double getEstimate(String type)
 	}
 
 
-
+/**
+* Method to get the instructor area
+*@return instructor area as a double
+*/
 public double getInstructorArea()
 {
 	return instructorArea;
 }
-
+/**
+* Method to get the other area
+*@return other area as a double
+*/
 public double getOtherArea()
 {
 	return otherArea;
@@ -43,24 +63,37 @@ public double getOtherArea()
 }
 
 
-
+/**
+* Method to set the instructor area
+*@param instructorArea takes an instructor area
+*/
 public void setInstructorArea(double instructorArea)
 {
 	
 	this.instructorArea =instructorArea;
 }
-
+/**
+* Method to set the other area
+*@param otherArea takes an other area
+*/
 public void setOtherArea(double otherArea)
 {
 	
 	this.otherArea =otherArea;
 }
-
+/**
+* toString method
+* @return String representation of the training venue
+*/
 public String toString()
 {
 	return "ID:"+this.getId()+";"+this.getName() +";#Events:"+this.getApprovedEvents().size()+";Inst.Area"+instructorArea+";Oth.Area"+otherArea;
 	
 }
+/**
+* toFile method
+* @return String representation of the training venue to be accepted by a file
+*/
 public String toFile()
 {
 	return ""+this.getId()+";"+this.getName() +";"+this.getApprovedEvents().size()+";"+instructorArea+";"+otherArea;

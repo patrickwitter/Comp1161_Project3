@@ -1,14 +1,24 @@
 
 
 import java.util.Scanner;
-
+/**
+ * Sports Venue
+ **/
 public class SportsVenue extends  Venue {
    private double competitorArea;
    private double spectatorArea;
    private int numSecurity;
    
-
-   public SportsVenue(String name, double competitorArea, double spectatorArea,
+	/**
+	 *Sports Venue Constructor
+	 *@param name  name associated with the venue
+	 *@param competitorArea area for competitors
+	 *@param spectatorArea area for spectators
+	 *@param numSecurity number of security present
+	 *@param basePrice price associated with the venue
+	 *@param lev local alert level 
+	 **/
+   	public SportsVenue(String name, double competitorArea, double spectatorArea,
 		              int numSecurity, double basePrice, int lev)
 	{
 	super(name, competitorArea +spectatorArea, basePrice,  lev);
@@ -17,24 +27,37 @@ public class SportsVenue extends  Venue {
 	this.numSecurity=numSecurity;
 
 	}
-   
+	/**
+	 * Method to get size of the venue.
+	 * Adds the competitorArea to the spectatorArea
+	 * @return resulting double of competitor and spectator areas added
+	 */
    public double getSize()
    {
 	   return competitorArea+ spectatorArea;
    }
-   
+   /**
+	* Method to determine the number of security assigned.
+	* @return the number of security as an integer
+    */
    public int countSecurity()
    {
 	   return numSecurity;
    }
    
    
-
+   /**
+	* Method to get the competitor area.
+	* @return the competitor area as a double
+    */
 	public double getCompArea()
 	{
 		return competitorArea;
 	}
-	
+   /**
+	* Method to get the spectator area.
+	* @return the spectator area as a double
+    */
 	public double getSpecArea()
 	{
 		return spectatorArea;
@@ -42,19 +65,28 @@ public class SportsVenue extends  Venue {
 	}
 	
 
-	
+   /**
+	* Method to get the number of security.
+	* @return the security as an integer
+    */
 	public int getNumSecurity()
 	{
 		return numSecurity;
 	}
 	
-	
+   /**
+	* Method to set the competitor area
+	*@param competitorArea takes a competitor area
+    */
 	public void setCompArea(double competitorArea)
 	{
 		
 		this.competitorArea =competitorArea;
 	}
-	
+   /**
+	* Method to set the spectator area
+	*@param spectatorArea takes a spectator area
+    */
 	public void setSpecArea(double spectatorArea)
 	{
 		
@@ -62,14 +94,21 @@ public class SportsVenue extends  Venue {
 	}
 	
 
-	
+   /**
+	* Method to set the number of security
+	*@param numSecurity takes the number of security
+    */
 	public void setNumSecurity(int numSecurity)
 	{
 		
 		this.numSecurity =numSecurity;
 	}
 
-	
+   /**
+	* Method to get the estimated price based on the type of event
+	* @param type type of event
+	* @return estimated price as double 
+    */
 	public double getEstimate(String type)
 	{
 		double price = basePrice;
@@ -83,11 +122,19 @@ public class SportsVenue extends  Venue {
 		return price;
 
 	}
+   /**
+	* toString method
+	* @return string representation of the sport venue
+    */
 	   public String toString()
 	   {
 	   	return "ID:"+this.getId()+";"+this.getName() +";#Events:"+this.getApprovedEvents().size()+";Compet Area:"+competitorArea+";Spec Area:"+spectatorArea+";#Sec:"+numSecurity;
 	   	
 	   }
+   /**
+	* toFile method 
+	* @return string representation of sport venue to be accepted by a file
+    */
 	   public String toFile()
 	   {
 		   	return ""+this.getId()+";"+this.getName() +";"+this.getApprovedEvents().size()+";"+competitorArea+";"+spectatorArea+";"+numSecurity;
