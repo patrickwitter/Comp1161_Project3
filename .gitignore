@@ -21,3 +21,12 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+#cases folder has test cases that project writes to when compiled
+cases/
+
+#contains binary files
+out/
+
+#score from test cases are written to this file
+score_100.00_620139423.tst

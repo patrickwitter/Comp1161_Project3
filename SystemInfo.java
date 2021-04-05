@@ -11,6 +11,10 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class SystemInfo {
+	/**
+	 * @about This contains the configuration settings for the application.
+	 * It checks if all the required folders can be accessed.
+	 */
 
 	private String codeFolder="Not detected";
 	private String testCaseFolder="Not detected";
