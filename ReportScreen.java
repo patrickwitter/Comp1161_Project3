@@ -2,12 +2,18 @@
 
 import java.io.PrintStream;
 import java.util.ArrayList;
-
+/**
+ *Report Screen 
+ **/
 public class ReportScreen {
 	
 	
 	public ReportScreen() {}
-	
+	/**
+	 * Method to list out all the promoters from an array of promoters
+	 * @param plist array of promoters
+	 * @param outStream output stream
+	 */
 	public void listPromoters(ArrayList<Promoter> plist,  PrintStream outStream)
 	{
 		if (outStream==System.out)
@@ -26,7 +32,11 @@ public class ReportScreen {
 		   outStream.println(outline);
 		}
 	}
-	
+	/**
+	 * Method to list out all the venues from an array of promoters
+	 * @param plist array of promoters
+	 * @param outStream output stream
+	 */	
 	public void listVenues(ArrayList<Venue> vlist, PrintStream outStream)
 	{
 		if (outStream==System.out)
