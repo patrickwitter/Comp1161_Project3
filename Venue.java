@@ -250,7 +250,7 @@ public int getId()
 	{
 		/**
 		 * Method Checks if Venue can hold number of people
-		 * @param  nump Number of persons to be present at venue 
+		 * @param  nump Number of persons to be present at venue
 		 */
 		boolean returnVal = false;
 		
