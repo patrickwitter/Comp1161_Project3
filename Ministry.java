@@ -51,6 +51,8 @@ public class Ministry {
 	* Checks the approval status of a venue
 	* @param a 
 	**/
+	
+	//I wanted to check the documentation for checkApproval
 	public int checkApproval(ApprovalRequest a)
 	{
 	    int maxForDay=0;
