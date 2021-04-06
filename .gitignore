@@ -30,6 +30,9 @@ out/
 
 #score from test cases are written to this file
 score_100.00_620139423.tst
+<<<<<<< HEAD
 
 #Binary File Word Makes
 User_Interface_Documentation/~$erDocumentation.docx
+=======
+>>>>>>> parent of 832ce08 (Updated .gitignore to ignore binary word file)
