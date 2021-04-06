@@ -2,12 +2,25 @@
 
 import java.util.Scanner;
 
+/**
+* Party Venue
+**/
+
 public class PartyVenue extends Venue{
 	double stageArea;
 	double barArea, foodArea;
 	int numSecurity;
 	
-
+	/**
+	 * Party Venue constructor.
+	 * @param name  The name of the Party Venue.
+	 * @param stageArea  Size of the Stage area on the Party Venue.
+	 * @param barArea  Size of the Bar area on the Party Venue.
+	 * @param foodArea  Size of the Food area on the Party Venue.
+	 * @param numSecurity  The number of security personnel on the Party Venue.
+	 * @param basePrice  Venue's base price.
+	 * @param lev   Alert level for this venue.
+	 */
 	public PartyVenue(String name, double stageArea,	double barArea, 
 			           double foodArea,int numSecurity, double basePrice,
 			            int lev)
@@ -43,26 +56,49 @@ public class PartyVenue extends Venue{
 
 	}
 	
+	/**
+	* Method to get the size of the stage area
+	* @return the stage area size as a double
+	*/
+	
 	public double getCurrStage()
 	{
 		return stageArea;
 	}
 	
+	/**
+	* Method to get the size of the bar area
+	* @return the bar area size as a double
+	*/
 	public double getBarArea()
 	{
 		return barArea;
 	}
+	
+	/**
+	* Method to get the size of the food area
+	* @return the food area size as a double
+	*/
 	
 	public double getFoodArea()
 	{
 		return foodArea;
 	}
 	
+	/**
+	* Method to get the number of security needed
+	* @return the number of security as an integer
+	*/
 	
 	public int getNumSecurity()
 	{
 		return numSecurity;
 	}
+	
+	/**
+	* Method to set the size of the stage area
+	* @param stageArea takes a stage area
+	*/
 	
 	public void setStageArea(double stageArea)
 	{
@@ -70,11 +106,21 @@ public class PartyVenue extends Venue{
 		this.stageArea =stageArea;
 	}
 	
+	/**
+	* Method to set the size of the food area
+	* @param foodArea takes a food area
+	*/
+	
 	public void setFoodArea(double foodArea)
 	{
 		
 		this.foodArea =foodArea;
 	}
+	
+	/**
+	* Method to set the size of the bar area
+	* @param barArea takes a bar area
+	*/
 	
 	public void setBarArea(double barArea)
 	{
@@ -82,17 +128,29 @@ public class PartyVenue extends Venue{
 		this.barArea =barArea;
 	}	
 	
+	/**
+	* Method to set the number of security
+	* @param numSecurity takes the number of security
+	*/
+	
 	public void setNumSecurity(int numSecurity)
 	{
 		
 		this.numSecurity =numSecurity;
 	}
 
-	
+	/** 
+	* toString method
+	* @return string representation of the party venue
+	*/
 	   public String toString()
 	   {
 	   	return "ID:"+this.getId()+";"+this.getName() +";#Events:"+this.getApprovedEvents().size()+";Stage Area:"+stageArea+";Bar Area:"+barArea+";Food Area:"+foodArea+";#Sec"+numSecurity;
-	   	
+	
+	/** 
+	* toFile method
+	* @return string representation of the party venue to be accepted by a file
+	*/
 	   }
 	   public String toFile()
 	   {
