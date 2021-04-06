@@ -1,4 +1,6 @@
-
+/**
+* Ministry
+**/
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -22,6 +24,11 @@ public class Ministry {
    	
    	public Ministry(String name, int level)
    	{
+		/**
+		* Constructor for Ministry. Determines alert level of a venue to be approved
+		* @param name of the venue
+		* @param level Alert level of the venue
+		**/
    		this.name=name;
    		switch(level)
    		{
@@ -40,7 +47,10 @@ public class Ministry {
    		}
    		}
    	
-
+	/**
+	* Checks the approval status of a venue
+	* @param a 
+	**/
 	public int checkApproval(ApprovalRequest a)
 	{
 	    int maxForDay=0;
