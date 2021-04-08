@@ -1,0 +1,28 @@
+import javax.swing.*;
+
+public class PromoterMenu{
+    private JButton addProm, listProm, editProm;
+    private final JPanel alemain;
+
+    public PromoterMenu(){
+        alemain = new JPanel();
+
+        addProm = new JButton("Add Promoter");
+        listProm = new JButton("List Promoters");
+        editProm = new JButton("Edit Promoters");
+
+        alemain.add(addProm);
+
+        alemain.add(listProm);
+
+        alemain.add(editProm);
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setContentPane(new PromoterMenu().alemain);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 300);
+        frame.setVisible(true);
+    }
+}
