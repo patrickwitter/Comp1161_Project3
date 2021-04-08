@@ -24,6 +24,7 @@ public class EntryScreen {
 		 * @param Arraylist of type Venue
 		 * @return Arraylist of type Promoter
 		 */
+		FileManager fm = new FileManager();//Add a file manager here
 		ReportScreen r = new ReportScreen();
 		char mchoice = 'c';
 		String menu="";
@@ -40,6 +41,8 @@ public class EntryScreen {
 				Promoter p = createPromoter(scan, min, vens);
 				if (p!=null)
 					proms.add(p);
+					//Write data to promoter file
+					fm.writeToPromoter(proms);
 				break;
 			}
 			case 'L':{
@@ -55,6 +58,8 @@ public class EntryScreen {
 					proms.get(pdx).updateLocalData(scan);
 				else
 					System.out.println("Promoter with id "+pid+ " not found.");
+				//Rewrite data when edited
+				fm.writeToPromoter(proms);
 				break;
 			}
 			case 'D':{
@@ -66,6 +71,9 @@ public class EntryScreen {
 					proms.remove(pdx);
 				else
 					System.out.println("Promoter with id "+pid+ " not found.");
+				//Rewrite data when deleted
+				fm.writeToPromoter(proms);
+				
 				break;
 			}
 

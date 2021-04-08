@@ -58,7 +58,7 @@ public class Driver {
 				menuOptions+=" Case "+ selCase+"-----------\n";
 			
 			menuOptions+="[P]romoter data\n[V]enue management\n[M]inistry interface\n";
-			menuOptions+="[L]oad test case\n[S]ave test case\n[T]est all cases\n";
+			menuOptions+="[L]oad test case\n[S]ave test case\n[T]est file system\n";
 			menuOptions+="-------System settings--------\n[I]D:";
 			
             if (stuId.length()==0)
@@ -85,10 +85,21 @@ public class Driver {
 			
 			menu = scan.next().toUpperCase();
 			mchoice = menu.charAt(0);
+
+			//Creates Files if they don't exist already
+			try {
+				FileManager.initFiles();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			FileManager fm = new FileManager();
+			//-----------------------------------------
+
 			switch(mchoice)
 			{
 			case 'P':{
-				work.promoters = entryScreen.managePromoters(scan,  work.promoters,  work.mny, work.venues);
+				//Updated manage promoters call, passing in the loaded promoters from a fixed file instead of a test case.
+				work.promoters = entryScreen.managePromoters(scan, fm.loadPromoters(work.mny, work.venues),  work.mny, work.venues);
 				break;
 			}
 			case 'V':{
@@ -109,7 +120,18 @@ public class Driver {
 			}
 			case 'T':{
 				try {
-					Tester.runCases(work,sys);
+					//Tester.runCases(work,sys);
+					//Testing File Management
+					FileManager.initFiles();
+					Promoter promoter = new Promoter("Pro1", 1000, work.mny, work.venues);
+					Promoter promoter2 = new Promoter("Pro2", 2000, work.mny, work.venues);
+					Venue venue = new Venue("Ven1", 20, 1000, 1);
+					ArrayList<Promoter> proms = new ArrayList<Promoter>();
+					proms.add(promoter); proms.add(promoter2);
+					ArrayList<Venue> vens = new ArrayList<Venue>();
+					vens.add(venue);
+					fm.writeToPromoter(proms);
+					fm.writeToVenue(vens);
 				}
 				catch(Exception exception){}
 				// s = entryScreen.editSystemInfo(s);
