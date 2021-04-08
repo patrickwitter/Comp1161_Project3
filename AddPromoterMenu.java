@@ -1,8 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class EditPromoterMenu extends JFrame {
-
+public class AddPromoterMenu extends JFrame {
+    
     // Adding panels
     JPanel title = new JPanel(new FlowLayout(FlowLayout.CENTER,0,10));
     JPanel command = new JPanel(new FlowLayout());
@@ -15,15 +15,16 @@ public class EditPromoterMenu extends JFrame {
     JButton cancel = new JButton("Cancel");
 
     //Adding Label
-    JLabel name = new JLabel("Enter New Name");
-    JLabel budget = new JLabel("Enter New Budget");
-    JLabel titleTag = new JLabel("Edit Promoter Menu");
+    JLabel name = new JLabel("Enter  Name");
+    JLabel budget = new JLabel("Enter  Budget");
+    JLabel titleTag = new JLabel("Add Promoter Menu");
 
     // Adding Text fields
     JTextField nameText = new JTextField(10);
+
     JTextField budText = new JTextField(10);
 
-    public EditPromoterMenu()
+    public AddPromoterMenu()
     {
         thisForm = this;
 
@@ -40,7 +41,7 @@ public class EditPromoterMenu extends JFrame {
         // Adding component to title panel
         title.add(titleTag);
 
-
+        // Configuring Text field
         // Adding component to display panel
         display.add(name);
         display.add(nameText);
