@@ -1,28 +1,38 @@
 import javax.swing.*;
+import java.awt.*;
 
-public class PromoterMenu{
-    private JButton addProm, listProm, editProm;
-    private final JPanel alemain;
+public class PromoterMenu extends JFrame{
+    JPanel alemain = new JPanel(new FlowLayout(FlowLayout.CENTER,10,20));
+
+    JButton addProm = new JButton("Add Promoter");
+    JButton listProm = new JButton("List Promoters");
+    JButton editProm = new JButton("Edit Promoters");
+
+    JLabel title = new JLabel("Promoter Menu");
+
+    JFrame thisform;
 
     public PromoterMenu(){
-        alemain = new JPanel();
 
-        addProm = new JButton("Add Promoter");
-        listProm = new JButton("List Promoters");
-        editProm = new JButton("Edit Promoters");
+        thisform = this;
 
+        //layout
+        thisform.setSize(500,500);
+        thisform.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        thisform.setLayout(new BorderLayout(5,5));
+
+        //title
+        title.add(title);
+
+        //components
         alemain.add(addProm);
-
         alemain.add(listProm);
-
         alemain.add(editProm);
-    }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        frame.setContentPane(new PromoterMenu().alemain);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300, 300);
-        frame.setVisible(true);
+        //thisform.add(alemain);
+        //thisform.add(title,BorderLayout.WEST);
+
+        //visibility
+        thisform.setVisible(true);
     }
 }
