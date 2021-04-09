@@ -103,7 +103,7 @@ public class Driver {
 				break;
 			}
 			case 'V':{
-				work.venues = entryScreen.manageVenues(scan, work.venues);
+				work.venues = entryScreen.manageVenues(scan, fm.loadVenues());
 				break;
 			}
 			case 'M':{

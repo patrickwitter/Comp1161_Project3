@@ -151,6 +151,7 @@ public class EntryScreen {
 		 * @param Arraylist of type Venue
 		 * @return Arraylist of type Venue
 		 */
+		FileManager fm = new FileManager();//Add a file manager here
 		ReportScreen r = new ReportScreen();
 		char mchoice = 'c';
 		String menu="";
@@ -175,6 +176,8 @@ public class EntryScreen {
 					Venue v = this.createVenue(scan);
 					if (v!=null)
 						vens.add(v);
+					System.out.println("Venue : "+v.toString());
+					fm.writeToVenue(vens);
 					break;
 				}
 				case 'L':{
@@ -190,11 +193,22 @@ public class EntryScreen {
 						vens.get(vdx).updateLocalData(scan);
 					else
 						System.out.println("Venue with id "+vid+ " not found.");
+					fm.writeToVenue(vens);
 					break;
 
 				}
 				case 'D':{
-
+					//Implemented Delete Functionality
+					System.out.println("Please enter the ID of the venue to be deleted:");
+					int pid = Integer.parseInt(scan.next());
+					int pdx = findVenue(vens,pid);
+	
+					if (pdx>=0)
+						vens.remove(pdx);
+					else
+						System.out.println("Promoter with id "+pid+ " not found.");
+					//Rewrite data when deleted
+					fm.writeToVenue(vens);
 					break;
 				}
 
@@ -251,9 +265,6 @@ public class EntryScreen {
 		System.out.println(addVenueMenue);
 		menu = scan.next().toUpperCase();
 		mchoice = menu.charAt(0);
-
-		while(mchoice != 'X')
-		{
 
 			System.out.println("Enter Venue Name");
 			//scan.next(); // Consuming rest of input stream to avoid skipping of next input
@@ -332,11 +343,6 @@ public class EntryScreen {
 				case'X':
 					break;
 			}
-
-			System.out.println(addVenueMenue);
-			menu = scan.next().toUpperCase();
-			mchoice = menu.charAt(0);
-		}
 		return v;
 	}
 

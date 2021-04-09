@@ -10,8 +10,7 @@ public class FileManager {
     private static File pfile = new File("promoters.txt");
     private static File vfile = new File("venues.txt");
 
-    public FileManager() {
-    }
+    public FileManager() {}
 
     /**
      * Method to initalize files and directories if they do not exist
@@ -54,7 +53,29 @@ public class FileManager {
         try {
             PrintWriter venWriter = new PrintWriter(new FileWriter(vfile));
             for (Venue ven : vens) {
-                venWriter.write(ven.toString()+"\n");
+                //venWriter.write(ven.toString()+"\n");
+                //If Regular Venue
+                if(ven.getClass()==Venue.class){
+                    venWriter.write(ven.getId()+";"+ven.getName()+";"+ven.getSize()+";"+ven.getPrice()+";"+ven.getLevel()+"\n");
+                }
+                //If Training Venue
+                if(ven.getClass()==TrainingVenue.class){
+					TrainingVenue tv = (TrainingVenue)ven;
+					venWriter.write(ven.getId()+";"+ven.getName()+";"+tv.getInstructorArea()+";"
+					+tv.getOtherArea()+";"+ven.getPrice()+";"+ven.getLevel()+"\n");
+                }
+                //If Sports Venue
+                if(ven.getClass()==SportsVenue.class){
+					SportsVenue sv = (SportsVenue)ven;
+					venWriter.write(ven.getId()+";"+ven.getName()+";"+sv.getCompArea()+";"
+					+sv.getSpecArea()+";"+sv.getNumSecurity()+";"+ven.getPrice()+";"+ven.getLevel()+"\n");
+                }
+                //If Party Venue
+                if(ven.getClass()==PartyVenue.class){
+					PartyVenue pv = (PartyVenue)ven;
+					venWriter.write(ven.getId()+";"+ven.getName()+";"+pv.getCurrStage()+";"
+					+pv.getFoodArea()+";"+pv.getBarArea()+";"+pv.getNumSecurity()+";"+ven.getPrice()+";"+ven.getLevel()+"\n");
+                }
             }
             venWriter.close(); 
         } catch (IOException e) {
@@ -79,7 +100,7 @@ public class FileManager {
 			while(pscan.hasNext())
 			{
 				String [] nextLine = pscan.nextLine().split(";");
-				System.out.println(nextLine[1]+" "+nextLine[2]);
+				//System.out.println(nextLine[1]+" "+nextLine[2]);
                 String name = nextLine[1];
 				double budget = Double.parseDouble(nextLine[2]);
 				Promoter p = new Promoter(name, budget,mny, vens);
@@ -94,6 +115,64 @@ public class FileManager {
 		{System.out.println("Number Format Exception");}
 
 		return plist;
+
+	}
+
+	/**
+	 * Function to load venues from a file
+	 * @return an array list of venues
+	 */
+	public ArrayList<Venue> loadVenues()
+	{
+		Scanner vscan = null;
+		ArrayList<Venue> vlist = new ArrayList<Venue>();
+		try
+		{
+			vscan  = new Scanner(vfile);
+
+			while(vscan.hasNext())
+			{
+				String [] nextLine = vscan.nextLine().split(";");
+				switch(nextLine.length)
+				{
+				case 5: //This is a regular venue
+				{
+					Venue v = new Venue(nextLine[1], Double.parseDouble(nextLine[2]),Double.parseDouble(nextLine[3]),Integer.parseInt(nextLine[4]));
+					vlist.add(v);
+					break;
+				}
+				case 6: //This is a training venue
+				{
+					Venue v = new TrainingVenue(nextLine[1], Double.parseDouble(nextLine[2]),Double.parseDouble(nextLine[3]),Double.parseDouble(nextLine[4]),Integer.parseInt(nextLine[5]));
+					vlist.add(v);
+					break;
+				}
+				case 7: //This is a sport venue
+				{
+					Venue v = new SportsVenue(nextLine[1], Double.parseDouble(nextLine[2]), Double.parseDouble(nextLine[3]),Integer.parseInt(nextLine[4]),Double.parseDouble(nextLine[5]),Integer.parseInt(nextLine[6]));
+					vlist.add(v);
+					break;
+				}
+				case 8: //This is a party venue
+				{
+					Venue v = new PartyVenue(nextLine[1], Double.parseDouble(nextLine[2]), Double.parseDouble(nextLine[3]),Double.parseDouble(nextLine[4]),Integer.parseInt(nextLine[5]),Double.parseDouble(nextLine[6]),Integer.parseInt(nextLine[7]));
+					vlist.add(v);
+					break;
+				}
+
+				}
+			}
+			vscan.close();
+		}
+
+
+		catch(IOException e)
+		{
+			//System.out.println("Something went wrong in WorkingArea -> loadVenues");
+			//e.printStackTrace();
+		}
+
+		return vlist;
 
 	}
 }
