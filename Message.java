@@ -21,6 +21,10 @@ public class Message extends JFrame implements ActionListener {
         this.setLayout(new BorderLayout(0,30));
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+        //Adding ActionListener
+        Ok.addActionListener(this);
+
+
         //Config label will message
         this.notification = new JLabel(message);
 
