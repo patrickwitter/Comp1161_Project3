@@ -2,12 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
 public class MainMenu_DriverMenu extends JFrame implements ActionListener {
 
+    private FileManager fm = new FileManager();
     private EntryScreen entryScreen= new EntryScreen();
     private ReportScreen r= new ReportScreen();
     private WorkArea work = new WorkArea();
@@ -26,7 +28,12 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
     public MainMenu_DriverMenu()
     {
 
-        // You should probably call read from file here.
+        //Create the files if they don't already exist
+        try {
+            FileManager.initFiles();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // Configuring Frame
         thisform = this;
@@ -81,7 +88,8 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
 
     public ArrayList<Venue> getVenueList()
     {
-        return work.venues;
+        //Loads Venues from a file
+        return fm.loadVenues();
     }
 
     // Called by addpromoter menu
@@ -89,16 +97,22 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
     {
         System.out.println("Testing for addition of promoter");
 
-        System.out.println(work.promoters); // -----------------------------Testing
+        System.out.println(getPromList()); // -----------------------------Testing
 
-        work.promoters.add(promoter);
+        //Loads promoters from a file to an arraylist, adds to the arraylist.
+        //Then writes the new array to a file.
+        ArrayList<Promoter> proms = getPromList();
+        
+        proms.add(promoter);
 
-        System.out.println(work.promoters); //----------------------------Testing
+        fm.writeToPromoter(proms);
+
+        System.out.println(getPromList()); //----------------------------Testing
     }
 
     public ArrayList<Promoter> getPromList()
     {
-        return work.promoters;
+        return fm.loadPromoters(work.mny, getVenueList());
     }
 
     public EntryScreen getEntryScreen()
@@ -112,11 +126,17 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
     {
         System.out.println("Testing for deletion of promoter");
 
-        System.out.println(work.promoters); // -----------------------------Testing
+        System.out.println(getPromList()); // -----------------------------Testing
 
-        work.promoters.remove(idx);
+        //Loads promoters from a file to an arraylist, deletes from the arraylist.
+        //Then writes the new array to a file.
+        ArrayList<Promoter> proms = getPromList();
 
-        System.out.println(work.promoters); //----------------------------Testing
+        proms.remove(idx);
+
+        fm.writeToPromoter(proms);
+
+        System.out.println(getPromList()); //----------------------------Testing
     }
     // Called by edit promoter menu when id is valid and the save button is pressed
     //Should write to file immediately after.
@@ -124,33 +144,40 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
     {
         System.out.println("Testing for editing  of promoter");
 
-        System.out.println(work.promoters); // -----------------------------Testing
+        System.out.println(getPromList()); // -----------------------------Testing
 
-        Promoter p = work.promoters.get(pidx);
+        //Loads promoters from a file to an arraylist, edits from the arraylist.
+        //Then writes the new array to a file.
+        ArrayList<Promoter> proms = getPromList();
 
-        p.setBudget(Double.parseDouble(budText));
+        proms.get(pidx).setBudget(Double.parseDouble(budText));
+        proms.get(pidx).setName(nameText);
 
-        p.setName(nameText);
+        fm.writeToPromoter(proms);
 
-        System.out.println(work.promoters); //----------------------------Testing
+        System.out.println(getPromList());//---------------------------Testing
     }
 
     //Called by list promoter menu when sort by name button is pressed
     //Should write to file immediately after.
     public ArrayList<Promoter> sortByName()
     {
-        Collections.sort(work.promoters, new sortByName());
+        ArrayList<Promoter> proms = getPromList();
+        Collections.sort(proms, new sortByName());
+        fm.writeToPromoter(proms);
 
-        return work.promoters;
+        return getPromList();
     }
 
     //Called by the list promoter menu when sort by budget button is pressed
     //Should write to file immediately after.
     public ArrayList<Promoter> sortByBud()
     {
-        Collections.sort(work.promoters,new sortByBudget());
+        ArrayList<Promoter> proms = getPromList();
+        Collections.sort(proms, new sortByBudget());
+        fm.writeToPromoter(proms);
 
-        return work.promoters;
+        return getPromList();
     }
 
     // This function should be called when the save button is pressed in any of
