@@ -94,6 +94,7 @@ public class FileManager {
 	 */
 	public ArrayList<Promoter> loadPromoters(Ministry mny, ArrayList<Venue> vens )
 	{
+		Promoter.resetId();
         System.out.println("Loading Promoters");
 		Scanner pscan = null;
 		ArrayList<Promoter> plist = new ArrayList<Promoter>();
@@ -127,6 +128,7 @@ public class FileManager {
 	 */
 	public ArrayList<Venue> loadVenues()
 	{
+		Venue.resetId();
 		Scanner vscan = null;
 		ArrayList<Venue> vlist = new ArrayList<Venue>();
 		try
