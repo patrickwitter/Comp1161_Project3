@@ -4,39 +4,35 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class EditPromoterMenu extends JFrame implements ActionListener {
+public class DeletePromoterMenu extends JFrame implements ActionListener {
 
-    // Adding panels
+    // Adding Panels
     JPanel title = new JPanel(new FlowLayout(FlowLayout.CENTER,0,10));
     JPanel command = new JPanel(new FlowLayout());
-    JPanel display = new JPanel(new GridLayout(3,2,0,10) );
+    JPanel display = new JPanel(new GridLayout(1,2,0,10) );
+
     //Adding reference frame
     JFrame thisForm;
 
     // Adding Buttons
-    JButton save = new JButton("Save");
+    JButton delete = new JButton("Delete Promoter");
     JButton cancel = new JButton("Cancel");
 
-    //Adding Label
-    JLabel id = new JLabel("Enter ID of promoter to edit");
-    JLabel name = new JLabel("Enter New Name");
-    JLabel budget = new JLabel("Enter New Budget");
-    JLabel titleTag = new JLabel("Edit Promoter Menu");
+    // Adding JLabel
+    JLabel delLabel = new JLabel("Enter id of Promoter to delete");
+    JLabel titleTag = new JLabel("Delete Promoter Menu");
+    // Adding Textfield
+    JTextField idDel = new JTextField(5);
 
-    // Adding Text fields
-    JTextField nameText = new JTextField(10);
-    JTextField budText = new JTextField(10);
-    JTextField idText = new JTextField(5);
-
+    // Adding PromoterMenu
     PromoterMenu promoterMenu;
 
-    public EditPromoterMenu(PromoterMenu prom)
+    public DeletePromoterMenu(PromoterMenu prom)
     {
+        this.promoterMenu = prom;
+
         thisForm = this;
 
-        promoterMenu = prom;
-
-        // Setting form configuration
         thisForm.setSize(300,200);
         thisForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         thisForm.setLayout(new BorderLayout());
@@ -46,28 +42,20 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
         command.setBackground(Color.cyan);
         display.setBackground(Color.green);
 
-        // Adding Action Listener to Button
-        save.addActionListener(this);
+        // Adding Actions to buttons
+        delete.addActionListener(this);
+        cancel.addActionListener(this);
 
-        // Adding component to title panel
+
+        //Adding component to title panel
         title.add(titleTag);
 
+        //Adding component to display panel
+        display.add(delLabel);
+        display.add(idDel);
 
-        // Adding component to display panel
-
-        display.add(id);
-        display.add(idText);
-
-        display.add(name);
-        display.add(nameText);
-
-        display.add(budget);
-        display.add(budText);
-
-
-        // Adding component to command panel
-
-        command.add(save);
+        // Adding command Panel
+        command.add(delete);
         command.add(cancel);
 
         //Adding panels to frame
@@ -77,31 +65,28 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
 
         // Displaying frame
         thisForm.setVisible(true);
-
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == save)
+        if(e.getSource() == delete)
         {
             EntryScreen entryscreen = promoterMenu.mainMenu.getEntryScreen();
 
             ArrayList<Promoter> promList = promoterMenu.mainMenu.getPromList();
 
-            int id = Integer.parseInt(idText.getText());
+            int id = Integer.parseInt(idDel.getText());
 
             int pidx = entryscreen.findPromoter(promList,id);
 
             if(pidx >= 0)
             {
-                promoterMenu.mainMenu.editProm(pidx,budText.getText(),nameText.getText());
+                promoterMenu.mainMenu.deleteProm(pidx);
             }
             else
             {
-                idText.setText("Promoter not found please enter valid promoter");
+                idDel.setText("Promoter not found please enter valid promoter");
             }
-
         }
     }
 }

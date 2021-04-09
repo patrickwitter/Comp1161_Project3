@@ -11,7 +11,7 @@ public class EntryScreen {
 
 	public EntryScreen() {}
 
-	public ArrayList<Promoter> managePromoters(Scanner scan,ArrayList<Promoter> proms, Ministry min, ArrayList<Venue> vens) throws NumberFormatException
+	public void managePromoters(Scanner scan,ArrayList<Promoter> proms, Ministry min, ArrayList<Venue> vens) throws NumberFormatException
 	{
 		/**
 		 * Method provides Promoter menu to the user.
@@ -24,9 +24,13 @@ public class EntryScreen {
 		 * @param Arraylist of type Venue
 		 * @return Arraylist of type Promoter
 		 */
+
+
+
 		ReportScreen r = new ReportScreen();
 		char mchoice = 'c';
 		String menu="";
+
 		while (mchoice!='X')
 		{
 			String menuOptions = "[A]dd/Create promoter\n[E]dit/Update promoter\n";
@@ -73,7 +77,7 @@ public class EntryScreen {
 			}
 
 		}
-		return proms;
+
 	}
 
 
