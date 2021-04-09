@@ -49,7 +49,7 @@ public class FileManager {
 
     /**
      * Method to write an array of venues to a file
-     * @param proms arraylist of promoters
+     * @param vens arraylist of promoters
      */
     public void writeToVenue(ArrayList<Venue> vens) {
         System.out.println("Writing to venue file");
