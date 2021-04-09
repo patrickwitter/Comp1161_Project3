@@ -46,7 +46,7 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
 
         //Adding ActionListners to buttons
         save.addActionListener(this);
-
+        cancel.addActionListener(this);
 
         // Adding component to title panel
         title.add(titleTag);
@@ -76,13 +76,35 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == save)
         {
-            Ministry currMinistry = promoterMenu.mainMenu.getMinistry();
+            try {
+                String[] names  = nameText.getText().split(" ");
 
-            ArrayList<Venue> currVenue = promoterMenu.mainMenu.getVenueList();
+                if(names.length == 2)
+                {
+                    Ministry currMinistry = promoterMenu.mainMenu.getMinistry();
 
-            Promoter p = new Promoter(nameText.getText(),Double.parseDouble(budText.getText()),currMinistry,currVenue);
+                    ArrayList<Venue> currVenue = promoterMenu.mainMenu.getVenueList();
 
-            promoterMenu.mainMenu.addProm(p);
+                    Promoter p = new Promoter(names[0] + " " + names[1],Double.parseDouble(budText.getText()),currMinistry,currVenue);
+
+                    promoterMenu.mainMenu.addProm(p);
+                }
+                else
+                {
+                    new Message("Please Enter First AND Lastname");
+                    nameText.setText("");
+                }
+            }
+            catch (NumberFormatException num)
+            {
+                new Message("Incorrect Type set for Budget. Please try again");
+                budText.setText("");
+            }
+
+        }
+        else if(e.getSource() == cancel)
+        {
+            this.dispose();
         }
     }
 }
