@@ -13,8 +13,7 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
     private EntryScreen entryScreen= new EntryScreen();
     private ReportScreen r= new ReportScreen();
     private WorkArea work = new WorkArea();
-    private SystemInfo sys = new SystemInfo();
-    private Scanner scan = new Scanner(System.in);
+   
 
 
     JFrame thisform;
@@ -92,12 +91,10 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
         return fm.loadVenues();
     }
 
+
     // Called by addpromoter menu
     public void addProm(Promoter promoter)
     {
-        System.out.println("Testing for addition of promoter");
-
-        System.out.println(getPromList()); // -----------------------------Testing
 
         //Loads promoters from a file to an arraylist, adds to the arraylist.
         //Then writes the new array to a file.
@@ -107,7 +104,6 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
 
         fm.writeToPromoter(proms);
 
-        System.out.println(getPromList()); //----------------------------Testing
     }
 
     public ArrayList<Promoter> getPromList()
@@ -124,9 +120,6 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
     //Should write to file immediately after.
     public void deleteProm(int idx)
     {
-        System.out.println("Testing for deletion of promoter");
-
-        System.out.println(getPromList()); // -----------------------------Testing
 
         //Loads promoters from a file to an arraylist, deletes from the arraylist.
         //Then writes the new array to a file.
@@ -136,15 +129,12 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
 
         fm.writeToPromoter(proms);
 
-        System.out.println(getPromList()); //----------------------------Testing
     }
+
     // Called by edit promoter menu when id is valid and the save button is pressed
     //Should write to file immediately after.
     public void editProm(int pidx,String budText,String nameText)
     {
-        System.out.println("Testing for editing  of promoter");
-
-        System.out.println(getPromList()); // -----------------------------Testing
 
         //Loads promoters from a file to an arraylist, edits from the arraylist.
         //Then writes the new array to a file.
@@ -155,7 +145,6 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
 
         fm.writeToPromoter(proms);
 
-        System.out.println(getPromList());//---------------------------Testing
     }
 
     //Called by list promoter menu when sort by name button is pressed
@@ -180,19 +169,7 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
         return getPromList();
     }
 
-    // This function should be called when the save button is pressed in any of
-    // the menus
-    private void writeTofile()
-    {
 
-        // Call writing to file functions with appropriate parameters
-    }
-
-    //This function should be the first thing that is ran
-    private void readFrom()
-    {
-        // Call reading from file fucntions with appropriate paramter
-    }
 
 
 }
