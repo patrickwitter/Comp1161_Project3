@@ -26,7 +26,7 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
     public MainMenu_DriverMenu()
     {
 
-
+        // You should probably call read from file here.
 
         // Configuring Frame
         thisform = this;
@@ -84,6 +84,7 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
         return work.venues;
     }
 
+    // Called by addpromoter menu
     public void addProm(Promoter promoter)
     {
         System.out.println("Testing for addition of promoter");
@@ -105,6 +106,8 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
         return this.entryScreen;
     }
 
+    // Called by delete promoter menu when the id is valid and the delete button is pressed.
+    //Should write to file immediately after.
     public void deleteProm(int idx)
     {
         System.out.println("Testing for deletion of promoter");
@@ -115,7 +118,8 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
 
         System.out.println(work.promoters); //----------------------------Testing
     }
-
+    // Called by edit promoter menu when id is valid and the save button is pressed
+    //Should write to file immediately after.
     public void editProm(int pidx,String budText,String nameText)
     {
         System.out.println("Testing for editing  of promoter");
@@ -131,6 +135,8 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
         System.out.println(work.promoters); //----------------------------Testing
     }
 
+    //Called by list promoter menu when sort by name button is pressed
+    //Should write to file immediately after.
     public ArrayList<Promoter> sortByName()
     {
         Collections.sort(work.promoters, new sortByName());
@@ -138,11 +144,28 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
         return work.promoters;
     }
 
+    //Called by the list promoter menu when sort by budget button is pressed
+    //Should write to file immediately after.
     public ArrayList<Promoter> sortByBud()
     {
         Collections.sort(work.promoters,new sortByBudget());
 
         return work.promoters;
     }
+
+    // This function should be called when the save button is pressed in any of
+    // the menus
+    private void writeTofile()
+    {
+
+        // Call writing to file functions with appropriate parameters
+    }
+
+    //This function should be the first thing that is ran
+    private void readFrom()
+    {
+        // Call reading from file fucntions with appropriate paramter
+    }
+
 
 }
