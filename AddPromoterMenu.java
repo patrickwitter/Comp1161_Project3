@@ -6,6 +6,10 @@ import java.util.ArrayList;
 
 public class AddPromoterMenu extends JFrame implements ActionListener {
 
+    //Configuring Content for Email
+    String message = "Dear Sir/Ma'am\n \tWe are happy to inform you that you have been added to our promoter list!";
+    String subject = "Ministry of Fun - Promoter Addition";
+
     // Adding panels
     JPanel title = new JPanel(new FlowLayout(FlowLayout.CENTER,0,10));
     JPanel command = new JPanel(new FlowLayout());
@@ -102,7 +106,14 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
 
                     if(notifyCheck.isSelected())
                     {
-
+                        try {
+                            PromoterEmail.sendMail(this.message,this.subject);
+                            new Message("Email was sent successfully");
+                        }
+                        catch (Exception un)
+                        {
+                            new Message("Email was not sent successfully");
+                        }
                     }
                 }
                 else
