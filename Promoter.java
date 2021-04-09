@@ -1,8 +1,9 @@
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 /////
-public class Promoter  implements Comparable<Promoter>{
+public class Promoter  implements Comparable<Promoter> {
 	private String name;
 	private double budget;
 	private Ministry min;
@@ -23,12 +24,13 @@ public class Promoter  implements Comparable<Promoter>{
 		nextid++;
   	}
 	//////
-	
+	@Override
 	public int compareTo(Promoter other)
 	{
 		return this.getName().compareTo(other.getName());
 	}
-	
+
+
 	public int getId()
 	{
 		return id;
@@ -173,4 +175,23 @@ public class Promoter  implements Comparable<Promoter>{
 		return name;
 	}
 
+}
+
+class sortByBudget implements Comparator<Promoter>{
+
+	@Override
+	public int compare(Promoter p1, Promoter p2)
+	{
+		return Double.compare(p1.getBudget(),p2.getBudget());
+	}
+
+
+}
+
+class sortByName implements  Comparator<Promoter>
+{
+	@Override
+	public int compare(Promoter o1, Promoter o2) {
+		return o1.getName().compareTo(o2.getName());
+	}
 }

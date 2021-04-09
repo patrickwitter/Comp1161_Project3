@@ -1,8 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-public class AddPromoterMenu extends JFrame {
-    
+public class AddPromoterMenu extends JFrame implements ActionListener {
+
     // Adding panels
     JPanel title = new JPanel(new FlowLayout(FlowLayout.CENTER,0,10));
     JPanel command = new JPanel(new FlowLayout());
@@ -21,11 +24,14 @@ public class AddPromoterMenu extends JFrame {
 
     // Adding Text fields
     JTextField nameText = new JTextField(10);
-
     JTextField budText = new JTextField(10);
 
-    public AddPromoterMenu()
+    PromoterMenu promoterMenu;
+
+    public AddPromoterMenu(PromoterMenu prom)
     {
+        this.promoterMenu = prom;
+
         thisForm = this;
 
         // Setting form configuration
@@ -38,10 +44,14 @@ public class AddPromoterMenu extends JFrame {
         command.setBackground(Color.cyan);
         display.setBackground(Color.green);
 
+        //Adding ActionListners to buttons
+        save.addActionListener(this);
+
+
         // Adding component to title panel
         title.add(titleTag);
 
-        // Configuring Text field
+
         // Adding component to display panel
         display.add(name);
         display.add(nameText);
@@ -49,7 +59,6 @@ public class AddPromoterMenu extends JFrame {
         display.add(budText);
 
         // Adding component to command panel
-
         command.add(save);
         command.add(cancel);
 
@@ -61,5 +70,19 @@ public class AddPromoterMenu extends JFrame {
         // Displaying frame
         thisForm.setVisible(true);
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == save)
+        {
+            Ministry currMinistry = promoterMenu.mainMenu.getMinistry();
+
+            ArrayList<Venue> currVenue = promoterMenu.mainMenu.getVenueList();
+
+            Promoter p = new Promoter(nameText.getText(),Double.parseDouble(budText.getText()),currMinistry,currVenue);
+
+            promoterMenu.mainMenu.addProm(p);
+        }
     }
 }

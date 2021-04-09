@@ -2,8 +2,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 
 public class MainMenu_DriverMenu extends JFrame implements ActionListener {
+
+    private EntryScreen entryScreen= new EntryScreen();
+    private ReportScreen r= new ReportScreen();
+    private WorkArea work = new WorkArea();
+    private SystemInfo sys = new SystemInfo();
+    private Scanner scan = new Scanner(System.in);
+
 
     JFrame thisform;
     JButton ManagePromoters = new JButton("Manage Promoters"); // Button to add promoters
@@ -15,12 +25,15 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
 
     public MainMenu_DriverMenu()
     {
+
+        // You should probably call read from file here.
+
+        // Configuring Frame
         thisform = this;
-
-
+        thisform.setSize(400,400);
         thisform.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         thisform.setLayout( new GridLayout(5,1,0,20));
+
 
         MenuPanel.setLayout(new BorderLayout());
 
@@ -36,17 +49,14 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
         MinistryInterface.addActionListener(this);
         Exit.addActionListener(this);
 
-
+        // Adding panels to frame
         thisform.add(MenuPanel);
         thisform.add(ManagePromoters);
         thisform.add(ManageVenue);
         thisform.add(MinistryInterface);
         thisform.add(Exit);
 
-        thisform.setSize(400,400);
-
-
-
+        //Setting  visibility of form to true
         thisform.setVisible(true);
 
     }
@@ -54,5 +64,108 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        if(e.getSource() == ManagePromoters)
+        {
+
+            PromoterMenu prom =  new PromoterMenu(this);
+        }
+
     }
+
+
+
+    public Ministry getMinistry()
+    {
+        return work.mny;
+    }
+
+    public ArrayList<Venue> getVenueList()
+    {
+        return work.venues;
+    }
+
+    // Called by addpromoter menu
+    public void addProm(Promoter promoter)
+    {
+        System.out.println("Testing for addition of promoter");
+
+        System.out.println(work.promoters); // -----------------------------Testing
+
+        work.promoters.add(promoter);
+
+        System.out.println(work.promoters); //----------------------------Testing
+    }
+
+    public ArrayList<Promoter> getPromList()
+    {
+        return work.promoters;
+    }
+
+    public EntryScreen getEntryScreen()
+    {
+        return this.entryScreen;
+    }
+
+    // Called by delete promoter menu when the id is valid and the delete button is pressed.
+    //Should write to file immediately after.
+    public void deleteProm(int idx)
+    {
+        System.out.println("Testing for deletion of promoter");
+
+        System.out.println(work.promoters); // -----------------------------Testing
+
+        work.promoters.remove(idx);
+
+        System.out.println(work.promoters); //----------------------------Testing
+    }
+    // Called by edit promoter menu when id is valid and the save button is pressed
+    //Should write to file immediately after.
+    public void editProm(int pidx,String budText,String nameText)
+    {
+        System.out.println("Testing for editing  of promoter");
+
+        System.out.println(work.promoters); // -----------------------------Testing
+
+        Promoter p = work.promoters.get(pidx);
+
+        p.setBudget(Double.parseDouble(budText));
+
+        p.setName(nameText);
+
+        System.out.println(work.promoters); //----------------------------Testing
+    }
+
+    //Called by list promoter menu when sort by name button is pressed
+    //Should write to file immediately after.
+    public ArrayList<Promoter> sortByName()
+    {
+        Collections.sort(work.promoters, new sortByName());
+
+        return work.promoters;
+    }
+
+    //Called by the list promoter menu when sort by budget button is pressed
+    //Should write to file immediately after.
+    public ArrayList<Promoter> sortByBud()
+    {
+        Collections.sort(work.promoters,new sortByBudget());
+
+        return work.promoters;
+    }
+
+    // This function should be called when the save button is pressed in any of
+    // the menus
+    private void writeTofile()
+    {
+
+        // Call writing to file functions with appropriate parameters
+    }
+
+    //This function should be the first thing that is ran
+    private void readFrom()
+    {
+        // Call reading from file fucntions with appropriate paramter
+    }
+
+
 }

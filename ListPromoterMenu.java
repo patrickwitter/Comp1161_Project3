@@ -1,8 +1,12 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
 
-public class ListPromoterMenu extends JFrame {
+public class ListPromoterMenu extends JFrame implements ActionListener {
 
     JTable listProm;
     DefaultTableModel model;
@@ -18,10 +22,17 @@ public class ListPromoterMenu extends JFrame {
     JLabel titleTag = new JLabel("List Promoter Menu");
     JFrame thisform;
 
-    public ListPromoterMenu()
+    ArrayList<Promoter> promlist;
+    PromoterMenu promoterMenu;
+
+    public ListPromoterMenu(PromoterMenu promoterMenu)
     {
+        this.promlist = promoterMenu.mainMenu.getPromList();
+        this.promoterMenu = promoterMenu;
+
         // Configuring Frame Notice that the layout is et before adding components
         thisform = this;
+
         thisform.setSize(400,400);
         thisform.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         thisform.setLayout(new BorderLayout(5,5));
@@ -32,7 +43,9 @@ public class ListPromoterMenu extends JFrame {
         title.setBackground(Color.red);
         display.setBackground(Color.yellow);
 
-
+        // Adding ActionListeners to buttons
+        SortbyName.addActionListener(this);
+        SortbyBud.addActionListener(this);
 
         // Adding compenents to title panel
         title.add(titleTag);
@@ -49,13 +62,61 @@ public class ListPromoterMenu extends JFrame {
         listProm.setFillsViewportHeight(true);
         scrollPane = new JScrollPane(listProm);
 
+        //Populating Table
+        this.populatePromTable(this.promlist);
+
+
         // Adding components to display
         display.add(scrollPane);
-
         thisform.add(display,BorderLayout.CENTER);
         thisform.add(title,BorderLayout.NORTH);
         thisform.add(cmdPanel,BorderLayout.SOUTH);
 
         thisform.setVisible(true);
+    }
+
+    private void populatePromTable(ArrayList<Promoter> promList)
+    {
+
+
+        if(promList.size() > 0)
+        {
+            for(Promoter promoter: promList)
+            {
+                this.addToTable(promoter);
+            }
+        }
+
+    }
+
+    private void addToTable(Promoter p)
+    {
+        String[] name = p.getName().split(" " );
+
+        Double budget = p.getBudget();
+
+        String[] row = {name[0] + " " + name[1], budget.toString()};
+
+        this.model.addRow(row);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        ArrayList<Promoter> newPromList =  new ArrayList<>();
+
+        if(e.getSource() == SortbyName)
+        {
+            newPromList = promoterMenu.mainMenu.sortByName();
+        }
+        else if(e.getSource() == SortbyBud)
+        {
+            newPromList = promoterMenu.mainMenu.sortByBud();
+        }
+
+        this.model.setRowCount(0);
+
+        this.populatePromTable(newPromList);
+
     }
 }
