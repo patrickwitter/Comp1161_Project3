@@ -17,10 +17,11 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
 
 
     JFrame thisform;
+
     JButton ManagePromoters = new JButton("Manage Promoters"); // Button to add promoters
-    JButton ManageVenue = new JButton("Manage Venues"); // Buttom to add venue
-    JButton MinistryInterface = new JButton("Ministry Interface"); // button to manage interface
+
     JButton Exit = new JButton("Exit"); // Exit Button
+
     JLabel MainMenuTag = new JLabel("Main Menu"); // Label
     JPanel MenuPanel = new JPanel();
 
@@ -48,18 +49,16 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
         ManagePromoters.setSize(50,50);
 
         // Setting Action Listeners for different buttons. Since the Main Menu implements
-        // Action Listener IT IS A ACTION LISTENER. Therefore when passing in the action listener we pass 'this'
+
 
         ManagePromoters.addActionListener(this);
-        ManageVenue.addActionListener(this);
-        MinistryInterface.addActionListener(this);
+
         Exit.addActionListener(this);
 
         // Adding panels to frame
         thisform.add(MenuPanel);
         thisform.add(ManagePromoters);
-        thisform.add(ManageVenue);
-        thisform.add(MinistryInterface);
+
         thisform.add(Exit);
 
         //Setting  visibility of form to true
@@ -74,6 +73,10 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
         {
 
             PromoterMenu prom =  new PromoterMenu(this);
+        }
+        if(e.getSource() == Exit)
+        {
+            System.exit(0);
         }
 
     }

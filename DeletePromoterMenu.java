@@ -34,7 +34,7 @@ public class DeletePromoterMenu extends JFrame implements ActionListener {
         thisForm = this;
 
         thisForm.setSize(300,200);
-        thisForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        thisForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         thisForm.setLayout(new BorderLayout());
 
         // Adding Background Color to the panels
@@ -71,22 +71,32 @@ public class DeletePromoterMenu extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == delete)
         {
-            EntryScreen entryscreen = promoterMenu.mainMenu.getEntryScreen();
+            try {
+                EntryScreen entryscreen = promoterMenu.mainMenu.getEntryScreen();
 
-            ArrayList<Promoter> promList = promoterMenu.mainMenu.getPromList();
+                ArrayList<Promoter> promList = promoterMenu.mainMenu.getPromList();
 
-            int id = Integer.parseInt(idDel.getText());
+                int id = Integer.parseInt(idDel.getText());
 
-            int pidx = entryscreen.findPromoter(promList,id);
+                int pidx = entryscreen.findPromoter(promList,id);
 
-            if(pidx >= 0)
-            {
-                promoterMenu.mainMenu.deleteProm(pidx);
+                if(pidx >= 0)
+                {
+                    promoterMenu.mainMenu.deleteProm(pidx);
+                }
+                else
+                {
+                    new Message("Promoter not found please enter valid promoter");
+                }
             }
-            else
-            {
-                idDel.setText("Promoter not found please enter valid promoter");
-            }
+           catch (NumberFormatException ex)
+           {
+               new Message("Incorrect format for ID please try again");
+           }
+        }
+        else if(e.getSource() == cancel)
+        {
+            this.dispose();
         }
     }
 }

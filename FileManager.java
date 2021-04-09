@@ -22,9 +22,9 @@ public class FileManager {
      */
     public static void initFiles() throws IOException {
         if (pfile.exists() && vfile.exists()) {
-            System.out.println("Files already exist");
+
         } else {
-            System.out.println("Files do not exist");
+
             pfile.createNewFile();
             vfile.createNewFile();
         }
@@ -35,7 +35,7 @@ public class FileManager {
      * @param proms arraylist of promoters
      */
     public void writeToPromoter(ArrayList<Promoter> proms) {
-        System.out.println("Writing to promoter file");
+
         try {
             PrintWriter promWriter = new PrintWriter(new FileWriter(pfile));
             for (Promoter prom : proms) {
@@ -52,7 +52,7 @@ public class FileManager {
      * @param vens arraylist of promoters
      */
     public void writeToVenue(ArrayList<Venue> vens) {
-        System.out.println("Writing to venue file");
+
         try {
             PrintWriter venWriter = new PrintWriter(new FileWriter(vfile));
             for (Venue ven : vens) {
@@ -95,7 +95,7 @@ public class FileManager {
 	public ArrayList<Promoter> loadPromoters(Ministry mny, ArrayList<Venue> vens )
 	{
 		Promoter.resetId();
-        System.out.println("Loading Promoters");
+
 		Scanner pscan = null;
 		ArrayList<Promoter> plist = new ArrayList<Promoter>();
 		try
