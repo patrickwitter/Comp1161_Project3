@@ -9,7 +9,7 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
     // Adding panels
     JPanel title = new JPanel(new FlowLayout(FlowLayout.CENTER,0,10));
     JPanel command = new JPanel(new FlowLayout());
-    JPanel display = new JPanel(new GridLayout(3,2,0,10) );
+    JPanel display = new JPanel(new GridLayout(4,2,0,10) );
     //Adding reference frame
     JFrame thisForm;
 
@@ -20,11 +20,15 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
     //Adding Label
     JLabel name = new JLabel("Enter  Name");
     JLabel budget = new JLabel("Enter  Budget");
+    JLabel notify = new JLabel("Send Notification email?");
     JLabel titleTag = new JLabel("Add Promoter Menu");
 
     // Adding Text fields
     JTextField nameText = new JTextField(10);
     JTextField budText = new JTextField(10);
+
+    // Adding JCheckBox
+    JCheckBox notifyCheck = new JCheckBox();
 
     PromoterMenu promoterMenu;
 
@@ -36,7 +40,7 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
 
         // Setting form configuration
         thisForm.setSize(300,200);
-        thisForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        thisForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         thisForm.setLayout(new BorderLayout());
 
         // Adding Background Color to the panels
@@ -46,7 +50,7 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
 
         //Adding ActionListners to buttons
         save.addActionListener(this);
-
+        cancel.addActionListener(this);
 
         // Adding component to title panel
         title.add(titleTag);
@@ -57,7 +61,8 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
         display.add(nameText);
         display.add(budget);
         display.add(budText);
-
+        display.add(notify);
+        display.add(notifyCheck);
         // Adding component to command panel
         command.add(save);
         command.add(cancel);
@@ -76,13 +81,46 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == save)
         {
-            Ministry currMinistry = promoterMenu.mainMenu.getMinistry();
+            try {
+                String[] names  = nameText.getText().split(" ");
 
-            ArrayList<Venue> currVenue = promoterMenu.mainMenu.getVenueList();
+                Double budget = Double.parseDouble(budText.getText());
 
-            Promoter p = new Promoter(nameText.getText(),Double.parseDouble(budText.getText()),currMinistry,currVenue);
+                String fullname = "";
 
-            promoterMenu.mainMenu.addProm(p);
+                if(names.length == 2)
+                {
+                    fullname = names[0] + " " + names[1];
+
+                    Ministry currMinistry = promoterMenu.mainMenu.getMinistry();
+
+                    ArrayList<Venue> currVenue = promoterMenu.mainMenu.getVenueList();
+
+                    Promoter p = new Promoter(fullname, budget ,currMinistry,currVenue);
+
+                    promoterMenu.mainMenu.addProm(p);
+
+                    if(notifyCheck.isSelected())
+                    {
+
+                    }
+                }
+                else
+                {
+                    new Message("Please Enter First AND Lastname");
+                    nameText.setText("");
+                }
+            }
+            catch (NumberFormatException num)
+            {
+                new Message("Incorrect Type set for Budget. Please try again");
+                budText.setText("");
+            }
+
+        }
+        else if(e.getSource() == cancel)
+        {
+            this.dispose();
         }
     }
 }

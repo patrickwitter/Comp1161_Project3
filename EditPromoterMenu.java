@@ -9,7 +9,7 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
     // Adding panels
     JPanel title = new JPanel(new FlowLayout(FlowLayout.CENTER,0,10));
     JPanel command = new JPanel(new FlowLayout());
-    JPanel display = new JPanel(new GridLayout(3,2,0,10) );
+    JPanel display = new JPanel(new GridLayout(4,2,0,10) );
     //Adding reference frame
     JFrame thisForm;
 
@@ -22,12 +22,15 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
     JLabel name = new JLabel("Enter New Name");
     JLabel budget = new JLabel("Enter New Budget");
     JLabel titleTag = new JLabel("Edit Promoter Menu");
+    JLabel willNotify = new JLabel("Notify Promoter");
 
     // Adding Text fields
     JTextField nameText = new JTextField(10);
     JTextField budText = new JTextField(10);
     JTextField idText = new JTextField(5);
 
+    //Adding JCheckbox
+    JCheckBox notify = new JCheckBox();
     PromoterMenu promoterMenu;
 
     public EditPromoterMenu(PromoterMenu prom)
@@ -38,7 +41,7 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
 
         // Setting form configuration
         thisForm.setSize(300,200);
-        thisForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        thisForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         thisForm.setLayout(new BorderLayout());
 
         // Adding Background Color to the panels
@@ -48,6 +51,7 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
 
         // Adding Action Listener to Button
         save.addActionListener(this);
+        cancel.addActionListener(this);
 
         // Adding component to title panel
         title.add(titleTag);
@@ -64,6 +68,8 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
         display.add(budget);
         display.add(budText);
 
+        display.add(willNotify);
+        display.add(notify);
 
         // Adding component to command panel
 
@@ -85,23 +91,50 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == save)
         {
-            EntryScreen entryscreen = promoterMenu.mainMenu.getEntryScreen();
+            try{
+                EntryScreen entryscreen = promoterMenu.mainMenu.getEntryScreen();
 
-            ArrayList<Promoter> promList = promoterMenu.mainMenu.getPromList();
+                ArrayList<Promoter> promList = promoterMenu.mainMenu.getPromList();
 
-            int id = Integer.parseInt(idText.getText());
+                String[] names = nameText.getText().split(" ");
 
-            int pidx = entryscreen.findPromoter(promList,id);
+                if(names.length == 2)
+                {
+                    int id = Integer.parseInt(idText.getText());
 
-            if(pidx >= 0)
-            {
-                promoterMenu.mainMenu.editProm(pidx,budText.getText(),nameText.getText());
+                    int pidx = entryscreen.findPromoter(promList,id);
+
+                    if(pidx >= 0)
+                    {
+                        promoterMenu.mainMenu.editProm(pidx,budText.getText(),nameText.getText());
+
+                        if(notify.isSelected())
+                        {
+
+                        }
+                    }
+                    else
+                    {
+                        new Message("Promoter not found please enter valid promoter");
+                    }
+                }
+                else
+                {
+                    new Message("Please Enter Firstname and Last Name");
+
+                }
+
             }
-            else
+            catch (NumberFormatException ex)
             {
-                idText.setText("Promoter not found please enter valid promoter");
+                new Message("Incorrect value for ID or Budget. Please try again");
             }
 
+
+        }
+        else if(e.getSource() == cancel)
+        {
+            this.dispose();
         }
     }
 }

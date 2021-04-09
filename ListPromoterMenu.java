@@ -18,6 +18,7 @@ public class ListPromoterMenu extends JFrame implements ActionListener {
 
     JButton SortbyName = new JButton("Sort by Name");
     JButton SortbyBud = new JButton("Sort by Budget");
+    JButton close = new JButton("Close");
 
     JLabel titleTag = new JLabel("List Promoter Menu");
     JFrame thisform;
@@ -34,7 +35,7 @@ public class ListPromoterMenu extends JFrame implements ActionListener {
         thisform = this;
 
         thisform.setSize(400,400);
-        thisform.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        thisform.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         thisform.setLayout(new BorderLayout(5,5));
 
 
@@ -46,6 +47,7 @@ public class ListPromoterMenu extends JFrame implements ActionListener {
         // Adding ActionListeners to buttons
         SortbyName.addActionListener(this);
         SortbyBud.addActionListener(this);
+        close.addActionListener(this);
 
         // Adding compenents to title panel
         title.add(titleTag);
@@ -53,9 +55,10 @@ public class ListPromoterMenu extends JFrame implements ActionListener {
         // Adding components to command panel
         cmdPanel.add(SortbyName);
         cmdPanel.add(SortbyBud);
+        cmdPanel.add(close);
 
         // Creating Table
-        String[] columnName = {"Promoter Name","Promoter Budget"};
+        String[] columnName = {"Promoter Name","Promoter Budget","Promoter Id"};
         model = new DefaultTableModel(columnName,0);
         listProm = new JTable(model);
         listProm.setPreferredScrollableViewportSize(new Dimension(300,300) );
@@ -95,7 +98,9 @@ public class ListPromoterMenu extends JFrame implements ActionListener {
 
         Double budget = p.getBudget();
 
-        String[] row = {name[0] + " " + name[1], budget.toString()};
+        int id = p.getId();
+
+        String[] row = {name[0] + " " + name[1], budget.toString(), Integer.toString(id)};
 
         this.model.addRow(row);
     }
@@ -105,7 +110,12 @@ public class ListPromoterMenu extends JFrame implements ActionListener {
     {
         ArrayList<Promoter> newPromList =  new ArrayList<>();
 
-        if(e.getSource() == SortbyName)
+        if(e.getSource() == close)
+        {
+            this.dispose();
+        }
+
+        else if(e.getSource() == SortbyName)
         {
             newPromList = promoterMenu.mainMenu.sortByName();
         }
