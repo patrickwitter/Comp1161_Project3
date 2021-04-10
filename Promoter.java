@@ -14,7 +14,7 @@ public class Promoter  implements Comparable<Promoter> {
 	private ArrayList<Event> approvedEvents = new ArrayList<Event>();
 	private ArrayList<Plan> plannedEvents = new ArrayList<Plan>();
 
-	
+
 	public Promoter (String name, double budget, Ministry min, ArrayList<Venue> venues) {
 
 		this.name = name;

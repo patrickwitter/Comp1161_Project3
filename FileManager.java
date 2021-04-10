@@ -132,22 +132,40 @@ public class FileManager {
 	 */
 	public ArrayList<Promoter> loadPromoters(Ministry mny, ArrayList<Venue> vens )
 	{
-		//Promoter.resetId();
+
 		Scanner pscan = null;
+		Scanner nextIdscan = null;
 		ArrayList<Promoter> plist = new ArrayList<Promoter>();
 		try
 		{
-			pscan  = new Scanner(pfile);
-			while(pscan.hasNext())
+
+			if(pfile.length() != 0) // Checking if promoterfile is not empty
 			{
-				String [] nextLine = pscan.nextLine().split(";");
-				//System.out.println(nextLine[1]+" "+nextLine[2]);
-                String name = nextLine[1];
-				double budget = Double.parseDouble(nextLine[2]);
-				Promoter p = new Promoter(name, budget,mny, vens);
-				plist.add(p);
+				pscan  = new Scanner(pfile);
+
+				nextIdscan = new Scanner(nextIDFile);
+
+				String[] nextId = nextIdscan.nextLine().split(" ");
+
+				int defId = Integer.parseInt(nextId[0]);
+
+				defId++; // Incrementing the id. This because the id in the file is last id saved therefore we
+						 // need to increment it so that the next promoter that is created does have the same id
+				Promoter.setNextid(defId);
+
+				while(pscan.hasNext())
+				{
+					String [] nextLine = pscan.nextLine().split(";");
+					//System.out.println(nextLine[1]+" "+nextLine[2]);
+					int  id = Integer.parseInt(nextLine[0]);
+					String name = nextLine[1];
+					double budget = Double.parseDouble(nextLine[2]);
+					Promoter p = new Promoter(name, budget,mny, vens,id);
+					plist.add(p);
+				}
+				pscan.close();
 			}
-			pscan.close();
+
 		}
 		catch(IOException e)
 		{System.out.println("IO Exception");}
