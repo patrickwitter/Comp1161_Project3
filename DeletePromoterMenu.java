@@ -83,6 +83,8 @@ public class DeletePromoterMenu extends JFrame implements ActionListener {
                 if(pidx >= 0)
                 {
                     promoterMenu.mainMenu.deleteProm(pidx);
+                    new Message("Promoter was successfully deleted");
+                    this.dispose();
                 }
                 else
                 {
