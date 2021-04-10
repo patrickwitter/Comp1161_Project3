@@ -113,6 +113,7 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
                     if(pidx >= 0)
                     {
                         promoterMenu.mainMenu.editProm(pidx,budText.getText(),nameText.getText());
+                        new Message("Promoter was edited successfully");
 
                         if(notify.isSelected())
                         {
@@ -125,6 +126,10 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
                             {
                                 new Message("Email was not sent successfully");
                             }
+                        }
+                        else
+                        {
+                            this.dispose();
                         }
                     }
                     else
