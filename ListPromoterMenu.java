@@ -86,6 +86,8 @@ public class ListPromoterMenu extends JFrame implements ActionListener {
         {
             for(Promoter promoter: promList)
             {
+              //  System.out.println(promoter);
+
                 this.addToTable(promoter);
             }
         }
