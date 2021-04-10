@@ -19,7 +19,6 @@ public class Driver {
 	 */
 	public static void main(String[] args)
 	{
-
 		MainMenu_DriverMenu mainMenu_driverMenu = new MainMenu_DriverMenu();
 	}
 
