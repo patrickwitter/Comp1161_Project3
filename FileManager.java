@@ -40,7 +40,7 @@ public class FileManager {
 	public static void setNextIDtoFile(int ID){
 		try {
 			PrintWriter idWriter = new PrintWriter(new FileWriter(nextIDFile));
-			idWriter.write(ID);
+			idWriter.write(String.valueOf(ID));
 			idWriter.close();
 		} catch (IOException e) {
 			System.out.println("Error setting ID");
@@ -61,7 +61,7 @@ public class FileManager {
 	public static void setLastIDtoFile(int ID){
 		try {
 			PrintWriter idWriter = new PrintWriter(new FileWriter(lastIDFile));
-			idWriter.write(ID);
+			idWriter.write(String.valueOf(ID));
 			idWriter.close();
 		} catch (IOException e) {
 			System.out.println("Error setting ID");
