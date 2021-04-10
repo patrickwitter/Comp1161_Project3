@@ -1,7 +1,4 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,6 +9,8 @@ public class FileManager {
 
     private static File pfile = new File("promoters.txt");
     private static File vfile = new File("venues.txt");
+    private static File nextIDFile = new File("nextID.txt");
+	private static File lastIDFile = new File("lastID.txt");
 
     public FileManager() {}
 
@@ -21,14 +20,53 @@ public class FileManager {
      * @throws IOException
      */
     public static void initFiles() throws IOException {
-        if (pfile.exists() && vfile.exists()) {
-
-        } else {
-
             pfile.createNewFile();
             vfile.createNewFile();
-        }
+            nextIDFile.createNewFile();
+            lastIDFile.createNewFile();
     }
+
+    public static int getNextIDFromFile(){
+    	Scanner scan = null;
+    	try {
+    		scan = new Scanner(nextIDFile);
+    		return Integer.parseInt(scan.nextLine());
+    	} catch (FileNotFoundException e) {
+    		e.printStackTrace();
+    	}
+    	return 0;
+	}
+
+	public static void setNextIDtoFile(int ID){
+		try {
+			PrintWriter idWriter = new PrintWriter(new FileWriter(nextIDFile));
+			idWriter.write(ID);
+			idWriter.close();
+		} catch (IOException e) {
+			System.out.println("Error setting ID");
+		}
+	}
+
+	public static int getLastIDFromFile(){
+		Scanner scan = null;
+		try {
+			scan = new Scanner(lastIDFile);
+			return Integer.parseInt(scan.nextLine());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
+	public static void setLastIDtoFile(int ID){
+		try {
+			PrintWriter idWriter = new PrintWriter(new FileWriter(lastIDFile));
+			idWriter.write(ID);
+			idWriter.close();
+		} catch (IOException e) {
+			System.out.println("Error setting ID");
+		}
+	}
 
     /**
      * Method to write an array of promoters to a file
@@ -94,8 +132,7 @@ public class FileManager {
 	 */
 	public ArrayList<Promoter> loadPromoters(Ministry mny, ArrayList<Venue> vens )
 	{
-		Promoter.resetId();
-
+		//Promoter.resetId();
 		Scanner pscan = null;
 		ArrayList<Promoter> plist = new ArrayList<Promoter>();
 		try
@@ -110,7 +147,6 @@ public class FileManager {
 				Promoter p = new Promoter(name, budget,mny, vens);
 				plist.add(p);
 			}
-
 			pscan.close();
 		}
 		catch(IOException e)
