@@ -104,23 +104,30 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
 
                     promoterMenu.mainMenu.addProm(p);
 
-                  new Message("Promoter Added Successfully",this.promoterMenu);
+
 
                     if(notifyCheck.isSelected())
                     {
                         try {
                             PromoterEmail.sendMail(this.message,this.subject);
-                            new Message("Email was sent successfully");
 
+                            new Message("Promoter was added Successfully. " +
+                                    "Email was sent successfully",this.promoterMenu);
+                            
+                            this.dispose();
                         }
                         catch (Exception un)
                         {
                             new Message("Email was not sent successfully");
                         }
                     }
+                    else
+                    {
+                        new Message("Promoter Added Successfully",this.promoterMenu);
+                        this.dispose();
+                    }
 
 
-                    this.dispose();
 
 
 
