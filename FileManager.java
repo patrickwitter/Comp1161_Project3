@@ -26,6 +26,8 @@ public class FileManager {
             lastIDFile.createNewFile();
     }
 
+	//region Unnecessary Functions
+    /*
     public static int getNextIDFromFile(){
     	Scanner scan = null;
     	try {
@@ -46,19 +48,26 @@ public class FileManager {
 			System.out.println("Error setting ID");
 		}
 	}
+*/
+	//endregion
 
 	public static int getLastIDFromFile(){
 		Scanner scan = null;
+		String[] id;
 		try {
+
 			scan = new Scanner(lastIDFile);
-			return Integer.parseInt(scan.nextLine());
+			id = scan.nextLine().split(" ");
+
+			return Integer.parseInt(id[0]);
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		return -1;
 	}
 
-	public static void setLastIDtoFile(int ID){
+	public static void writeLastIDtoFile(int ID){
 		try {
 			PrintWriter idWriter = new PrintWriter(new FileWriter(lastIDFile));
 			idWriter.write(String.valueOf(ID));
@@ -74,7 +83,17 @@ public class FileManager {
      */
     public void writeToPromoter(ArrayList<Promoter> proms) {
 
+
         try {
+        	int lastid = Promoter.getNextId(); // This is the id of the next promoter to be created
+												// when a new promoter is created the id is assigned and the
+												// next id is incremented by one for the id of the next promoter
+												// to be created
+
+			//System.out.println("Last ID written to file  " + lastid); //-----------------------------------------------------------------------------Test
+
+			writeLastIDtoFile(lastid); // Writing lastid to file
+
             PrintWriter promWriter = new PrintWriter(new FileWriter(pfile));
             for (Promoter prom : proms) {
                 promWriter.write(prom.toString()+"\n");
@@ -132,7 +151,6 @@ public class FileManager {
 	 */
 	public ArrayList<Promoter> loadPromoters(Ministry mny, ArrayList<Venue> vens )
 	{
-
 		Scanner pscan = null;
 		Scanner nextIdscan = null;
 		ArrayList<Promoter> plist = new ArrayList<Promoter>();
@@ -143,20 +161,15 @@ public class FileManager {
 			{
 				pscan  = new Scanner(pfile);
 
-				nextIdscan = new Scanner(nextIDFile);
+				int defId = getLastIDFromFile();
 
-				String[] nextId = nextIdscan.nextLine().split(" ");
-
-				int defId = Integer.parseInt(nextId[0]);
-
-				defId++; // Incrementing the id. This because the id in the file is last id saved therefore we
-						 // need to increment it so that the next promoter that is created does have the same id
+				//System.out.println("last id from file "+ defId); //--------------------------Test
 				Promoter.setNextid(defId);
 
 				while(pscan.hasNext())
 				{
 					String [] nextLine = pscan.nextLine().split(";");
-					//System.out.println(nextLine[1]+" "+nextLine[2]);
+
 					int  id = Integer.parseInt(nextLine[0]);
 					String name = nextLine[1];
 					double budget = Double.parseDouble(nextLine[2]);
@@ -182,7 +195,7 @@ public class FileManager {
 	 */
 	public ArrayList<Venue> loadVenues()
 	{
-		Venue.resetId();
+
 		Scanner vscan = null;
 		ArrayList<Venue> vlist = new ArrayList<Venue>();
 		try

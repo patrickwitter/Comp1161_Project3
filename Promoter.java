@@ -23,6 +23,7 @@ public class Promoter  implements Comparable<Promoter> {
 		this.venues= venues;
 		id = nextid;
 		nextid++;
+		//System.out.println("Next promoter id " +nextid);
   	}
   	// This constructor is used when a Promoter is being created when it is read from file.
 	// Therefore it already has its own id
@@ -83,14 +84,16 @@ public class Promoter  implements Comparable<Promoter> {
 	{
 		plannedEvents.add(p);
 	}
-	
+
+
+
 	public static void resetId()
 	{
 		
 		nextid=0;
 	}
-	
-	
+
+
 	public void updateLocalData(Scanner scan)
 	{
 	    scan.nextLine();
