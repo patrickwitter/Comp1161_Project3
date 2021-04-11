@@ -87,8 +87,8 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
         titleTag.setFont(boldFont);
 
         display.setBackground(Color.WHITE); notifyCheck.setBackground(Color.WHITE);
-        name.setFont(regFont);
-        budget.setFont(regFont);
+        name.setFont(regFont); nameText.setFont(regFont);
+        budget.setFont(regFont); budText.setFont(regFont);
         notify.setFont(regFont);
 
         command.setBackground(Color.WHITE);

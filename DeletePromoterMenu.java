@@ -78,7 +78,7 @@ public class DeletePromoterMenu extends JFrame implements ActionListener {
             cancel.setBackground(Color.ORANGE); cancel.setFont(regFont);
 
         display.setBackground(Color.WHITE);
-            delLabel.setFont(regFont);
+            delLabel.setFont(regFont); idDel.setFont(regFont);
     }
 
     @Override
