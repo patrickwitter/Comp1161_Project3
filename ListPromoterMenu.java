@@ -78,6 +78,7 @@ public class ListPromoterMenu extends JFrame implements ActionListener {
         thisform.add(display,BorderLayout.CENTER);
         thisform.add(title,BorderLayout.NORTH);
         thisform.add(cmdPanel,BorderLayout.SOUTH);
+        thisform.setLocationRelativeTo(null);
         thisform.setVisible(true);
 
         //Formatting

@@ -39,6 +39,7 @@ public class Message extends JFrame implements ActionListener {
         this.add(display,BorderLayout.CENTER);
         this.add(cmd,BorderLayout.SOUTH);
 
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
 
         //Formatting
@@ -78,6 +79,7 @@ public class Message extends JFrame implements ActionListener {
         this.add(display,BorderLayout.CENTER);
         this.add(cmd,BorderLayout.SOUTH);
 
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
 
         //Formatting

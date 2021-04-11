@@ -64,6 +64,7 @@ public class DeletePromoterMenu extends JFrame implements ActionListener {
         thisForm.add(command,BorderLayout.SOUTH);
 
         // Displaying frame
+        thisForm.setLocationRelativeTo(null);
         thisForm.setVisible(true);
 
         //Formatting

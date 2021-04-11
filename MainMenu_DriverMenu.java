@@ -59,6 +59,7 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
         thisform.add(Exit);
 
         //Setting  visibility of form to true
+        thisform.setLocationRelativeTo(null);
         thisform.setVisible(true);
 
         //Applying Formatting

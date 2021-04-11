@@ -47,7 +47,7 @@ public class PromoterMenu extends JFrame implements ActionListener {
         thisform.add(ListPromoter);
         thisform.add(DeletePromoter);
 
-
+        thisform.setLocationRelativeTo(null);
         thisform.setVisible(true);
 
         //Formatting
