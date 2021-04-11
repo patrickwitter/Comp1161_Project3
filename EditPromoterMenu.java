@@ -16,8 +16,12 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
     JPanel title = new JPanel(new FlowLayout(FlowLayout.CENTER,0,10));
     JPanel command = new JPanel(new FlowLayout());
     JPanel display = new JPanel(new GridLayout(4,2,0,10) );
+
     //Adding reference frame
     JFrame thisForm;
+
+    //Setting Icon
+    ImageIcon imageIcon = new ImageIcon(getClass().getResource("Icons/EditPromoterIcon.png"));
 
     // Adding Buttons
     JButton save = new JButton("Save");
@@ -37,6 +41,8 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
 
     //Adding JCheckbox
     JCheckBox notify = new JCheckBox();
+
+    //Previous Menu
     PromoterMenu promoterMenu;
 
     public EditPromoterMenu(PromoterMenu prom)
@@ -50,10 +56,8 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
         thisForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         thisForm.setLayout(new BorderLayout());
 
-        /*// Adding Background Color to the panels
-        title.setBackground(Color.red);
-        command.setBackground(Color.cyan);
-        display.setBackground(Color.green);*/
+        //Setting Icon
+        thisForm.setIconImage(imageIcon.getImage());
 
         // Adding Action Listener to Button
         save.addActionListener(this);

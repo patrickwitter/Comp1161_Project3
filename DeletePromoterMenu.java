@@ -14,6 +14,9 @@ public class DeletePromoterMenu extends JFrame implements ActionListener {
     //Adding reference frame
     JFrame thisForm;
 
+    //Setting Icon
+    ImageIcon imageIcon = new ImageIcon(getClass().getResource("Icons/DeletePromoterIcon.png"));
+
     // Adding Buttons
     JButton delete = new JButton("Delete Promoter");
     JButton cancel = new JButton("Cancel");
@@ -24,7 +27,7 @@ public class DeletePromoterMenu extends JFrame implements ActionListener {
     // Adding Textfield
     JTextField idDel = new JTextField(5);
 
-    // Adding PromoterMenu
+    // Previous Menu
     PromoterMenu promoterMenu;
 
     public DeletePromoterMenu(PromoterMenu prom)
@@ -33,14 +36,13 @@ public class DeletePromoterMenu extends JFrame implements ActionListener {
 
         thisForm = this;
 
+        //Configuring Frame
         thisForm.setSize(400,230);
         thisForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         thisForm.setLayout(new BorderLayout());
 
-        /*// Adding Background Color to the panels
-        title.setBackground(Color.red);
-        command.setBackground(Color.cyan);
-        display.setBackground(Color.green);*/
+        //Setting Icon
+        thisForm.setIconImage(imageIcon.getImage());
 
         // Adding Actions to buttons
         delete.addActionListener(this);

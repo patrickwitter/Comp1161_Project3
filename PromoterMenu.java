@@ -6,14 +6,24 @@ import java.awt.event.ActionListener;
 public class PromoterMenu extends JFrame implements ActionListener {
 
     JFrame thisform;
+
+    //Setting Icon
+    ImageIcon imageIcon = new ImageIcon(getClass().getResource("Icons/PromoterIcon.png"));
+
+    //Adding Buttons
     JButton AddPromoter = new JButton("Add/Create Promoter"); // Button to add promoters
     JButton EditPromoter = new JButton("Edit/Update Promoter"); // Buttom to add venue
     JButton ListPromoter = new JButton("List Promoter"); // button to manage interface
     JButton DeletePromoter = new JButton("Delete Promoter"); // Exit Button
-    JLabel PromoterMenuTag = new JLabel("Manage Promoter"); // Label
-    JPanel MenuPanel = new JPanel();
     JButton BackButton = new JButton("<");
 
+    //Adding Label
+    JLabel PromoterMenuTag = new JLabel("Manage Promoter"); // Label
+
+    //Adding Panel
+    JPanel MenuPanel = new JPanel();
+
+    //Previous Menu
     MainMenu_DriverMenu mainMenu;
 
     private ReportScreen reportScreen = new ReportScreen();
@@ -27,6 +37,9 @@ public class PromoterMenu extends JFrame implements ActionListener {
         thisform.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         thisform.setLayout( new GridLayout(5,1,0,20));
         thisform.setSize(400,400);
+
+        //Setting Icon
+        thisform.setIconImage(imageIcon.getImage());
 
         // Menu Panel Configuration
         MenuPanel.setLayout(new FlowLayout(FlowLayout.LEFT,40,0));
@@ -48,9 +61,6 @@ public class PromoterMenu extends JFrame implements ActionListener {
         thisform.add(ListPromoter);
         thisform.add(DeletePromoter);
 
-        thisform.setLocationRelativeTo(null);
-        thisform.setVisible(true);
-
         //Formatting
         Font boldFont = new Font(Font.DIALOG_INPUT, Font.BOLD,  20);
         Font regFont = new Font(Font.DIALOG, Font.PLAIN,  15);
@@ -61,6 +71,9 @@ public class PromoterMenu extends JFrame implements ActionListener {
         EditPromoter.setBackground(Color.ORANGE); EditPromoter.setFont(regFont);
         ListPromoter.setBackground(Color.ORANGE); ListPromoter.setFont(regFont);
         DeletePromoter.setBackground(Color.ORANGE); DeletePromoter.setFont(regFont);
+
+        thisform.setLocationRelativeTo(null);
+        thisform.setVisible(true);
 
     }
 

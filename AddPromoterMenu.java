@@ -10,10 +10,14 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
     String message = "Dear Sir/Ma'am\n \tWe are happy to inform you that you have been added to our promoter list!";
     String subject = "Ministry of Fun - Promoter Addition";
 
+    //Setting Icon
+    ImageIcon imageIcon = new ImageIcon(getClass().getResource("Icons/AddPromoterIcon.png"));
+
     // Adding panels
     JPanel title = new JPanel(new FlowLayout(FlowLayout.CENTER,0,10));
     JPanel command = new JPanel(new FlowLayout());
     JPanel display = new JPanel(new GridLayout(4,2,0,10) );
+
     //Adding reference frame
     JFrame thisForm;
 
@@ -47,10 +51,8 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
         thisForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         thisForm.setLayout(new BorderLayout());
 
-        /*// Adding Background Color to the panels
-        title.setBackground(Color.red);
-        command.setBackground(Color.cyan);
-        display.setBackground(Color.green);*/
+        //Setting Icon
+        thisForm.setIconImage(imageIcon.getImage());
 
         //Adding ActionListners to buttons
         save.addActionListener(this);

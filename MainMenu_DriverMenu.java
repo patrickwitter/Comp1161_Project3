@@ -14,7 +14,14 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
     private ReportScreen r= new ReportScreen();
     private WorkArea work = new WorkArea();
 
+    /**
+     * Shows Manaage Promoter and Exit Options to the user
+     */
 
+    //java.net.URL imageURL = MainMenu_DriverMenu.class.getResource("images/myImage.gif");
+
+    //Setting Icon
+    ImageIcon imageIcon = new ImageIcon(getClass().getResource("Icons/HomeIcon.png"));
 
     JFrame thisform;
 
@@ -38,29 +45,23 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
         thisform.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         thisform.setLayout( new GridLayout(5,1,0,20));
 
+        //Setting Icon
+        thisform.setIconImage(imageIcon.getImage());
 
+        //Configuring and adding components to menu panel
         MenuPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-
         MenuPanel.add(MainMenuTag);
-
         ManagePromoters.setSize(50,50);
 
-        // Setting Action Listeners for different buttons. Since the Main Menu implements
-
-
+        // Setting Action Listeners for different buttons.
         ManagePromoters.addActionListener(this);
-
         Exit.addActionListener(this);
 
         // Adding panels to frame
         thisform.add(MenuPanel);
         thisform.add(ManagePromoters);
-
         thisform.add(Exit);
 
-        //Setting  visibility of form to true
-        thisform.setLocationRelativeTo(null);
-        thisform.setVisible(true);
 
         //Applying Formatting
         Font boldFont = new Font(Font.DIALOG_INPUT, Font.BOLD,  20);
@@ -69,6 +70,10 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
         thisform.getContentPane().setBackground(Color.WHITE);
         ManagePromoters.setBackground(Color.ORANGE); ManagePromoters.setFont(regFont);
         Exit.setBackground(Color.ORANGE); Exit.setFont(regFont);
+
+        //Setting  visibility of form to true
+        thisform.setLocationRelativeTo(null);
+        thisform.setVisible(true);
     }
 
     @Override

@@ -8,22 +8,33 @@ import java.util.Collections;
 
 public class ListPromoterMenu extends JFrame implements ActionListener {
 
+    //Configuring Table
     JTable listProm;
     DefaultTableModel model;
     JScrollPane scrollPane;
 
+    //Configuring Panels
     JPanel cmdPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,10,20));
     JPanel display = new JPanel();
     JPanel title = new JPanel(new FlowLayout(FlowLayout.CENTER,0,10));
 
+    // Adding Buttons
     JButton SortbyName = new JButton("Sort by Name");
     JButton SortbyBud = new JButton("Sort by Budget");
     JButton close = new JButton("Close");
 
+    // Adding Label
     JLabel titleTag = new JLabel("List Promoter Menu");
+
     JFrame thisform;
 
+
+    //Setting Icon
+    ImageIcon imageIcon = new ImageIcon(getClass().getResource("Icons/ListPromoterIcon.jpg"));
+
     ArrayList<Promoter> promlist;
+
+    //Previous Menu
     PromoterMenu promoterMenu;
 
     public ListPromoterMenu(PromoterMenu promoterMenu)
@@ -35,25 +46,21 @@ public class ListPromoterMenu extends JFrame implements ActionListener {
         this.promoterMenu = promoterMenu;
 
 
-        // Configuring Frame Notice that the layout is et before adding components
+        // Configuring Frame
         thisform = this;
-
         thisform.setSize(400,400);
         thisform.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         thisform.setLayout(new BorderLayout(5,5));
 
-
-        /*// Adding background color to panels
-        cmdPanel.setBackground(Color.blue);
-        title.setBackground(Color.red);
-        display.setBackground(Color.yellow);*/
+        //Setting Icon
+        thisform.setIconImage(imageIcon.getImage());
 
         // Adding ActionListeners to buttons
         SortbyName.addActionListener(this);
         SortbyBud.addActionListener(this);
         close.addActionListener(this);
 
-        // Adding compenents to title panel
+        // Adding components to title panel
         title.add(titleTag);
 
         // Adding components to command panel
