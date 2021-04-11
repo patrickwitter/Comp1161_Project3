@@ -39,9 +39,9 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
         thisform.setLayout( new GridLayout(5,1,0,20));
 
 
-        MenuPanel.setLayout(new BorderLayout());
+        MenuPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        MenuPanel.add(MainMenuTag,BorderLayout.CENTER);
+        MenuPanel.add(MainMenuTag);
 
         ManagePromoters.setSize(50,50);
 

@@ -29,9 +29,10 @@ public class PromoterMenu extends JFrame implements ActionListener {
         thisform.setSize(400,400);
 
         // Menu Panel Configuration
-        MenuPanel.setLayout(new BorderLayout());
-        MenuPanel.add(PromoterMenuTag,BorderLayout.EAST);
-        MenuPanel.add(BackButton,BorderLayout.WEST);
+        MenuPanel.setLayout(new FlowLayout(FlowLayout.LEFT,40,0));
+        MenuPanel.add(BackButton);
+        MenuPanel.add(PromoterMenuTag);
+
 
         // Adding Action Listeners
         AddPromoter.addActionListener(this);
