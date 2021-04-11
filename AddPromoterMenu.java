@@ -104,7 +104,7 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
 
                     promoterMenu.mainMenu.addProm(p);
 
-                    new Message("Promoter Added Successfully");
+                  new Message("Promoter Added Successfully",this.promoterMenu);
 
                     if(notifyCheck.isSelected())
                     {
@@ -118,7 +118,14 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
                             new Message("Email was not sent successfully");
                         }
                     }
+
+
                     this.dispose();
+
+
+
+
+
 
                 }
                 else
@@ -137,6 +144,8 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
         else if(e.getSource() == cancel)
         {
             this.dispose();
+
+            promoterMenu.setVisible(true);
         }
     }
 }

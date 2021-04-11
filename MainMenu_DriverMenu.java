@@ -69,6 +69,8 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
         if(e.getSource() == ManagePromoters)
         {
 
+            this.setVisible(false); // Hiding Main Menu
+
             PromoterMenu prom =  new PromoterMenu(this);
         }
         if(e.getSource() == Exit)

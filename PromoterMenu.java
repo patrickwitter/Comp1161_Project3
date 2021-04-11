@@ -7,7 +7,7 @@ public class PromoterMenu extends JFrame implements ActionListener {
 
     JFrame thisform;
     JButton AddPromoter = new JButton("Add/Create Promoter"); // Button to add promoters
-    JButton UpdatePromoter = new JButton("Edit/Update Promoter"); // Buttom to add venue
+    JButton EditPromoter = new JButton("Edit/Update Promoter"); // Buttom to add venue
     JButton ListPromoter = new JButton("List Promoter"); // button to manage interface
     JButton DeletePromoter = new JButton("Delete Promoter"); // Exit Button
     JLabel PromoterMenuTag = new JLabel("Manage Promoter"); // Label
@@ -37,13 +37,13 @@ public class PromoterMenu extends JFrame implements ActionListener {
         AddPromoter.addActionListener(this);
         ListPromoter.addActionListener(this);
         DeletePromoter.addActionListener(this);
-        UpdatePromoter.addActionListener(this);
-
+        EditPromoter.addActionListener(this);
+        BackButton.addActionListener(this);
 
         // Adding components to frame
         thisform.add(MenuPanel);
         thisform.add(AddPromoter);
-        thisform.add(UpdatePromoter);
+        thisform.add(EditPromoter);
         thisform.add(ListPromoter);
         thisform.add(DeletePromoter);
 
@@ -55,6 +55,8 @@ public class PromoterMenu extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        thisform.setVisible(false);
+
         if(e.getSource() == AddPromoter)
         {
             AddPromoterMenu addPromoterMenu = new AddPromoterMenu(this);
@@ -63,7 +65,7 @@ public class PromoterMenu extends JFrame implements ActionListener {
         {
             ListPromoterMenu listPromoterMenu = new ListPromoterMenu(this);
         }
-        else if(e.getSource() == UpdatePromoter)
+        else if(e.getSource() == EditPromoter)
         {
             EditPromoterMenu editPromoterMenu = new EditPromoterMenu(this);
 
@@ -71,6 +73,11 @@ public class PromoterMenu extends JFrame implements ActionListener {
         else if(e.getSource() == DeletePromoter)
         {
             DeletePromoterMenu deletePromoterMenu = new DeletePromoterMenu(this);
+        }
+        else if(e.getSource() == BackButton)
+        {
+
+            this.mainMenu.setVisible(true);
         }
     }
 
