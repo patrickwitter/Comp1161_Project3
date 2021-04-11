@@ -104,7 +104,7 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
 
                 String[] names = nameText.getText().split(" ");
 
-                if(names.length == 2)
+                if(names.length == 2 || nameText.getText().equals("")) // Checking whether no name was entered or if First AND last name was entered
                 {
                     int id = Integer.parseInt(idText.getText());
 

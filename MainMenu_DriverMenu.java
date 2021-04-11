@@ -96,7 +96,7 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
     public void addProm(Promoter promoter)
     {
 
-        //Loads promoters from a file to an arraylist, adds to the arraylist.
+        //Adds to array and then writes the array to file
         //Then writes the new array to a file.
         
         work.promoters.add(promoter);
@@ -132,17 +132,22 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
 
     // Called by edit promoter menu when id is valid and the save button is pressed
     //Should write to file immediately after.
-    public void editProm(int pidx,String budText,String nameText)
+    public void editProm(int pidx,String budText,String nameText) throws NumberFormatException
     {
 
-        //Loads promoters from a file to an arraylist, edits from the arraylist.
+        // Edits from the arraylist.
         //Then writes the new array to a file.
-        ArrayList<Promoter> proms = getPromList();
+        if(!budText.equals(""))
+        {
+            work.promoters.get(pidx).setBudget(Double.parseDouble(budText));
+        }
+        if(!nameText.equals(""))
+        {
+            work.promoters.get(pidx).setName(nameText);
+        }
 
-        proms.get(pidx).setBudget(Double.parseDouble(budText));
-        proms.get(pidx).setName(nameText);
 
-        fm.writeToPromoter(proms);
+        fm.writeToPromoter(work.promoters);
 
     }
 
