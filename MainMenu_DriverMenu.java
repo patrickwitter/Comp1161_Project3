@@ -28,12 +28,9 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
     public MainMenu_DriverMenu()
     {
 
-        //Create the files if they don't already exist
-        try {
-            FileManager.initFiles();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //Calling initialize function to initialize all data from respective files
+        // or create the required files
+        initialize();
 
         // Configuring Frame
         thisform = this;
@@ -99,13 +96,12 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
     public void addProm(Promoter promoter)
     {
 
-        //Loads promoters from a file to an arraylist, adds to the arraylist.
+        //Adds to array and then writes the array to file
         //Then writes the new array to a file.
-        ArrayList<Promoter> proms = getPromList();
         
-        proms.add(promoter);
+        work.promoters.add(promoter);
 
-        fm.writeToPromoter(proms);
+        fm.writeToPromoter(work.promoters);
 
     }
 
@@ -136,17 +132,22 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
 
     // Called by edit promoter menu when id is valid and the save button is pressed
     //Should write to file immediately after.
-    public void editProm(int pidx,String budText,String nameText)
+    public void editProm(int pidx,String budText,String nameText) throws NumberFormatException
     {
 
-        //Loads promoters from a file to an arraylist, edits from the arraylist.
+        // Edits from the arraylist.
         //Then writes the new array to a file.
-        ArrayList<Promoter> proms = getPromList();
+        if(!budText.equals(""))
+        {
+            work.promoters.get(pidx).setBudget(Double.parseDouble(budText));
+        }
+        if(!nameText.equals(""))
+        {
+            work.promoters.get(pidx).setName(nameText);
+        }
 
-        proms.get(pidx).setBudget(Double.parseDouble(budText));
-        proms.get(pidx).setName(nameText);
 
-        fm.writeToPromoter(proms);
+        fm.writeToPromoter(work.promoters);
 
     }
 
@@ -172,7 +173,18 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
         return getPromList();
     }
 
+    public void initialize()
+    {
+        try {
+            FileManager.initFiles();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        this.work.promoters = fm.loadPromoters(work.mny, work.venues);
+
+
+    }
 
 
 }

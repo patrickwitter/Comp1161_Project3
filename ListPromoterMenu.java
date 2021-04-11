@@ -29,7 +29,11 @@ public class ListPromoterMenu extends JFrame implements ActionListener {
     public ListPromoterMenu(PromoterMenu promoterMenu)
     {
         this.promlist = promoterMenu.mainMenu.getPromList();
+
+        //System.out.println(promlist); // ---------------------------Testing
+
         this.promoterMenu = promoterMenu;
+
 
         // Configuring Frame Notice that the layout is et before adding components
         thisform = this;
