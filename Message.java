@@ -18,7 +18,7 @@ public class Message extends JFrame implements ActionListener {
     {
         // Setting Frame Config
 
-        this.setSize(400,300);
+        this.setSize(550,300);
         this.setLayout(new BorderLayout(0,30));
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -39,7 +39,18 @@ public class Message extends JFrame implements ActionListener {
         this.add(display,BorderLayout.CENTER);
         this.add(cmd,BorderLayout.SOUTH);
 
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
+
+        //Formatting
+        Font boldFont = new Font(Font.DIALOG_INPUT, Font.BOLD,  17);
+        Font regFont = new Font(Font.DIALOG, Font.PLAIN,  15);
+
+        this.getContentPane().setBackground(Color.WHITE);
+        display.setBackground(Color.WHITE);
+            notification.setFont(boldFont);
+        cmd.setBackground(Color.WHITE);
+            Ok.setFont(regFont); Ok.setBackground(Color.ORANGE);
     }
 
     public Message(String message, JFrame menu)
@@ -47,7 +58,7 @@ public class Message extends JFrame implements ActionListener {
         this.menu = menu;
 
         // Setting Frame Config
-        this.setSize(400,300);
+        this.setSize(550,300);
         this.setLayout(new BorderLayout(0,30));
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -68,7 +79,18 @@ public class Message extends JFrame implements ActionListener {
         this.add(display,BorderLayout.CENTER);
         this.add(cmd,BorderLayout.SOUTH);
 
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
+
+        //Formatting
+        Font boldFont = new Font(Font.DIALOG_INPUT, Font.BOLD,  17);
+        Font regFont = new Font(Font.DIALOG, Font.PLAIN,  15);
+
+        this.getContentPane().setBackground(Color.WHITE);
+        display.setBackground(Color.WHITE);
+        notification.setFont(boldFont);
+        cmd.setBackground(Color.WHITE);
+        Ok.setFont(regFont); Ok.setBackground(Color.ORANGE);
     }
     @Override
     public void actionPerformed(ActionEvent e) {

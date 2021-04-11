@@ -59,8 +59,16 @@ public class MainMenu_DriverMenu extends JFrame implements ActionListener {
         thisform.add(Exit);
 
         //Setting  visibility of form to true
+        thisform.setLocationRelativeTo(null);
         thisform.setVisible(true);
 
+        //Applying Formatting
+        Font boldFont = new Font(Font.DIALOG_INPUT, Font.BOLD,  20);
+        Font regFont = new Font(Font.DIALOG, Font.PLAIN,  15);
+        MenuPanel.setBackground(Color.WHITE); MainMenuTag.setFont(boldFont);
+        thisform.getContentPane().setBackground(Color.WHITE);
+        ManagePromoters.setBackground(Color.ORANGE); ManagePromoters.setFont(regFont);
+        Exit.setBackground(Color.ORANGE); Exit.setFont(regFont);
     }
 
     @Override

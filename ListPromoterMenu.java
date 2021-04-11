@@ -43,10 +43,10 @@ public class ListPromoterMenu extends JFrame implements ActionListener {
         thisform.setLayout(new BorderLayout(5,5));
 
 
-        // Adding background color to panels
+        /*// Adding background color to panels
         cmdPanel.setBackground(Color.blue);
         title.setBackground(Color.red);
-        display.setBackground(Color.yellow);
+        display.setBackground(Color.yellow);*/
 
         // Adding ActionListeners to buttons
         SortbyName.addActionListener(this);
@@ -78,8 +78,22 @@ public class ListPromoterMenu extends JFrame implements ActionListener {
         thisform.add(display,BorderLayout.CENTER);
         thisform.add(title,BorderLayout.NORTH);
         thisform.add(cmdPanel,BorderLayout.SOUTH);
-
+        thisform.setLocationRelativeTo(null);
         thisform.setVisible(true);
+
+        //Formatting
+        Font boldFont = new Font(Font.DIALOG_INPUT, Font.BOLD,  17);
+        Font regFont = new Font(Font.DIALOG, Font.PLAIN,  15);
+
+        cmdPanel.setBackground(Color.WHITE);
+            SortbyBud.setBackground(Color.ORANGE); SortbyBud.setFont(regFont);
+            SortbyName.setBackground(Color.ORANGE); SortbyName.setFont(regFont);
+            close.setBackground(Color.ORANGE); close.setFont(regFont);
+
+        title.setBackground(Color.WHITE);
+            titleTag.setFont(boldFont);
+
+        display.setBackground(Color.WHITE);
     }
 
     private void populatePromTable(ArrayList<Promoter> promList)

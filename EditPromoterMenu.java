@@ -46,14 +46,14 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
         promoterMenu = prom;
 
         // Setting form configuration
-        thisForm.setSize(300,200);
+        thisForm.setSize(400,230);
         thisForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         thisForm.setLayout(new BorderLayout());
 
-        // Adding Background Color to the panels
+        /*// Adding Background Color to the panels
         title.setBackground(Color.red);
         command.setBackground(Color.cyan);
-        display.setBackground(Color.green);
+        display.setBackground(Color.green);*/
 
         // Adding Action Listener to Button
         save.addActionListener(this);
@@ -88,7 +88,25 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
         thisForm.add(command,BorderLayout.SOUTH);
 
         // Displaying frame
+        thisForm.setLocationRelativeTo(null);
         thisForm.setVisible(true);
+
+        //Formatting
+        Font boldFont = new Font(Font.DIALOG_INPUT, Font.BOLD,  17);
+        Font regFont = new Font(Font.DIALOG, Font.PLAIN,  15);
+
+        title.setBackground(Color.WHITE);
+        titleTag.setFont(boldFont);
+
+        display.setBackground(Color.WHITE);
+        id.setFont(regFont); idText.setFont(regFont);
+        name.setFont(regFont); nameText.setFont(regFont);
+        budget.setFont(regFont); budText.setFont(regFont);
+        willNotify.setFont(regFont); notify.setBackground(Color.WHITE);
+
+        command.setBackground(Color.WHITE);
+        save.setBackground(Color.ORANGE); save.setFont(regFont);
+        cancel.setBackground(Color.ORANGE); cancel.setFont(regFont);
 
     }
 

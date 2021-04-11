@@ -47,8 +47,19 @@ public class PromoterMenu extends JFrame implements ActionListener {
         thisform.add(ListPromoter);
         thisform.add(DeletePromoter);
 
-
+        thisform.setLocationRelativeTo(null);
         thisform.setVisible(true);
+
+        //Formatting
+        Font boldFont = new Font(Font.DIALOG_INPUT, Font.BOLD,  20);
+        Font regFont = new Font(Font.DIALOG, Font.PLAIN,  15);
+        thisform.getContentPane().setBackground(Color.white); PromoterMenuTag.setFont(boldFont);
+        BackButton.setBackground(Color.ORANGE);
+        MenuPanel.setBackground(Color.WHITE);
+        AddPromoter.setBackground(Color.ORANGE); AddPromoter.setFont(regFont);
+        EditPromoter.setBackground(Color.ORANGE); EditPromoter.setFont(regFont);
+        ListPromoter.setBackground(Color.ORANGE); ListPromoter.setFont(regFont);
+        DeletePromoter.setBackground(Color.ORANGE); DeletePromoter.setFont(regFont);
 
     }
 
