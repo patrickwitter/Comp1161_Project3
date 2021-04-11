@@ -10,10 +10,14 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
     String message = "Dear Sir/Ma'am\n \tWe are happy to inform you that you have been added to our promoter list!";
     String subject = "Ministry of Fun - Promoter Addition";
 
+    //Setting Icon
+    ImageIcon imageIcon = new ImageIcon(getClass().getResource("Icons/AddPromoterIcon.png"));
+
     // Adding panels
     JPanel title = new JPanel(new FlowLayout(FlowLayout.CENTER,0,10));
     JPanel command = new JPanel(new FlowLayout());
     JPanel display = new JPanel(new GridLayout(4,2,0,10) );
+
     //Adding reference frame
     JFrame thisForm;
 
@@ -43,14 +47,12 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
         thisForm = this;
 
         // Setting form configuration
-        thisForm.setSize(300,200);
+        thisForm.setSize(340,220);
         thisForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         thisForm.setLayout(new BorderLayout());
 
-        // Adding Background Color to the panels
-        title.setBackground(Color.red);
-        command.setBackground(Color.cyan);
-        display.setBackground(Color.green);
+        //Setting Icon
+        thisForm.setIconImage(imageIcon.getImage());
 
         //Adding ActionListners to buttons
         save.addActionListener(this);
@@ -77,7 +79,25 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
         thisForm.add(command,BorderLayout.SOUTH);
 
         // Displaying frame
+        thisForm.setLocationRelativeTo(null);
         thisForm.setVisible(true);
+
+        //Formatting
+        Font boldFont = new Font(Font.DIALOG_INPUT, Font.BOLD,  17);
+        Font regFont = new Font(Font.DIALOG, Font.PLAIN,  15);
+
+        title.setBackground(Color.WHITE);
+        titleTag.setFont(boldFont);
+
+        display.setBackground(Color.WHITE); notifyCheck.setBackground(Color.WHITE);
+        name.setFont(regFont); nameText.setFont(regFont);
+        budget.setFont(regFont); budText.setFont(regFont);
+        notify.setFont(regFont);
+
+        command.setBackground(Color.WHITE);
+        save.setBackground(Color.ORANGE); save.setFont(regFont);
+        cancel.setBackground(Color.ORANGE); save.setFont(regFont);
+
 
     }
 
@@ -113,7 +133,7 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
 
                             new Message("Promoter was added Successfully. " +
                                     "Email was sent successfully",this.promoterMenu);
-                            
+
                             this.dispose();
                         }
                         catch (Exception un)
