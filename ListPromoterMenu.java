@@ -119,6 +119,8 @@ public class ListPromoterMenu extends JFrame implements ActionListener {
         if(e.getSource() == close)
         {
             this.dispose();
+
+            promoterMenu.setVisible(true);
         }
 
         else if(e.getSource() == SortbyName)

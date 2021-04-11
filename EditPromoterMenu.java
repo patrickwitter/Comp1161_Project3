@@ -113,13 +113,17 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
                     if(pidx >= 0)
                     {
                         promoterMenu.mainMenu.editProm(pidx,budText.getText(),nameText.getText());
-                        new Message("Promoter was edited successfully");
 
                         if(notify.isSelected())
                         {
                             try {
                                 PromoterEmail.sendMail(this.message,this.subject);
-                                new Message("Email was sent successfully");
+
+
+
+                                new Message("Promoter was edited Successfully. " +
+                                        "Email was sent successfully",this.promoterMenu);
+
                                 this.dispose();
                             }
                             catch (Exception un)
@@ -129,7 +133,9 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
                         }
                         else
                         {
+                            new Message("Promoter was edited successfully",this.promoterMenu);
                             this.dispose();
+
                         }
                     }
                     else
@@ -154,6 +160,8 @@ public class EditPromoterMenu extends JFrame implements ActionListener {
         else if(e.getSource() == cancel)
         {
             this.dispose();
+
+            promoterMenu.setVisible(true);
         }
     }
 }
