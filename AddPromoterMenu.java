@@ -113,7 +113,7 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
 
                             new Message("Promoter was added Successfully. " +
                                     "Email was sent successfully",this.promoterMenu);
-                            
+
                             this.dispose();
                         }
                         catch (Exception un)
