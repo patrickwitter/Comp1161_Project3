@@ -43,14 +43,14 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
         thisForm = this;
 
         // Setting form configuration
-        thisForm.setSize(300,200);
+        thisForm.setSize(340,220);
         thisForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         thisForm.setLayout(new BorderLayout());
 
-        // Adding Background Color to the panels
+        /*// Adding Background Color to the panels
         title.setBackground(Color.red);
         command.setBackground(Color.cyan);
-        display.setBackground(Color.green);
+        display.setBackground(Color.green);*/
 
         //Adding ActionListners to buttons
         save.addActionListener(this);
@@ -78,6 +78,23 @@ public class AddPromoterMenu extends JFrame implements ActionListener {
 
         // Displaying frame
         thisForm.setVisible(true);
+
+        //Formatting
+        Font boldFont = new Font(Font.DIALOG_INPUT, Font.BOLD,  17);
+        Font regFont = new Font(Font.DIALOG, Font.PLAIN,  15);
+
+        title.setBackground(Color.WHITE);
+        titleTag.setFont(boldFont);
+
+        display.setBackground(Color.WHITE); notifyCheck.setBackground(Color.WHITE);
+        name.setFont(regFont);
+        budget.setFont(regFont);
+        notify.setFont(regFont);
+
+        command.setBackground(Color.WHITE);
+        save.setBackground(Color.ORANGE); save.setFont(regFont);
+        cancel.setBackground(Color.ORANGE); save.setFont(regFont);
+
 
     }
 
