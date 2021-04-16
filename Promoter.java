@@ -1,8 +1,9 @@
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 /////
-public class Promoter  implements Comparable<Promoter>{
+public class Promoter  implements Comparable<Promoter> {
 	private String name;
 	private double budget;
 	private Ministry min;
@@ -12,7 +13,8 @@ public class Promoter  implements Comparable<Promoter>{
 	private ArrayList<Venue> venues;
 	private ArrayList<Event> approvedEvents = new ArrayList<Event>();
 	private ArrayList<Plan> plannedEvents = new ArrayList<Plan>();
-	
+
+
 	public Promoter (String name, double budget, Ministry min, ArrayList<Venue> venues) {
 
 		this.name = name;
@@ -21,14 +23,44 @@ public class Promoter  implements Comparable<Promoter>{
 		this.venues= venues;
 		id = nextid;
 		nextid++;
+		//System.out.println("Next promoter id " +nextid);
   	}
+  	// This constructor is used when a Promoter is being created when it is read from file.
+	// Therefore it already has its own id
+	public Promoter (String name, double budget, Ministry min, ArrayList<Venue> venues, int Id) {
+
+		this.name = name;
+		this.budget = budget;
+		this.min = min;
+		this.venues= venues;
+		this.id = Id;
+
+	}
+
+	// This is called when the promoter is being written to file
+	// The value is written to the file that stores the next id.
+	public static int getNextId()
+	{
+		return nextid;
+	}
+
+	// If the promoter file is not empty this means that promoters
+	// have already been created. Therefore to prevent the program from
+	// creating new promoters from ids starting from 0. The last id that was saved is
+	// read from file and incremented by one (the parameter of this file) and this function
+	// is called with that value.
+	public static void setNextid(int id)
+	{
+		nextid = id;
+	}
 	//////
-	
+	@Override
 	public int compareTo(Promoter other)
 	{
 		return this.getName().compareTo(other.getName());
 	}
-	
+
+
 	public int getId()
 	{
 		return id;
@@ -52,14 +84,16 @@ public class Promoter  implements Comparable<Promoter>{
 	{
 		plannedEvents.add(p);
 	}
-	
+
+
+
 	public static void resetId()
 	{
 		
 		nextid=0;
 	}
-	
-	
+
+
 	public void updateLocalData(Scanner scan)
 	{
 	    scan.nextLine();
@@ -173,4 +207,23 @@ public class Promoter  implements Comparable<Promoter>{
 		return name;
 	}
 
+}
+
+class sortByBudget implements Comparator<Promoter>{
+
+	@Override
+	public int compare(Promoter p1, Promoter p2)
+	{
+		return Double.compare(p1.getBudget(),p2.getBudget());
+	}
+
+
+}
+
+class sortByName implements  Comparator<Promoter>
+{
+	@Override
+	public int compare(Promoter o1, Promoter o2) {
+		return o1.getName().compareTo(o2.getName());
+	}
 }
